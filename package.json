@@ -1,0 +1,14 @@
+{
+  "name": "discord-sucks",
+  "version": "0.1.0-beta",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "#"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.6.0"
+  }
+}
