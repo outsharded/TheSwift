@@ -12,7 +12,7 @@ module.exports = {
 				.setDescription('Describe your issue. Ping users if you are reporting them.')
 				.setRequired(true)),
 	async execute(interaction) {
-		await interaction.reply({ content: 'Thanks! The staff team will review your report as soon as possible.', ephemeral: true });
+		await interaction.reply({ content: 'Thanks! The staff team will review your report as soon as possible. **Please also ping @Moderator!**', ephemeral: true });
 		const report = interaction.options.getString('report');
 		console.log(`**${interaction.member.user.username}** has reported **${report}**.`);
 	},
