@@ -1,4 +1,5 @@
-const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
+const { SlashCommandBuilder, Client,  } = require('discord.js');
+const client = new Client({ intents: [] });
 
 //was woman command. got dewomanised. bleeding heart liberals, ey?
 module.exports = {
@@ -11,8 +12,11 @@ module.exports = {
 				.setDescription('Describe your issue. Ping users if you are reporting them.')
 				.setRequired(true)),
 	async execute(interaction) {
-        const report = interaction.options.getString('reason');
-        await interaction.reply({ content: `Thank you for your report. Report: ${report}`, ephemeral: true });
-        
+		await interaction.reply({ content: 'Thanks! The staff team will review your report as soon as possible.', ephemeral: true });
+	},
+	async execute(interaction) {
+		const report = interaction.options.getString('reason');
+		const channel = Client.channels.get('id');
+		channel.send(`content ${report}`);
 	},
 };
