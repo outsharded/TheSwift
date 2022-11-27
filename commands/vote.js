@@ -24,5 +24,6 @@ module.exports = {
 		.setDescription('Vote for the server'),
 	async execute(interaction) {
 		await interaction.reply({ embeds: [voteEmbed], components: [row] });
+        console.log('Vote commands - completed')
 	},
 };

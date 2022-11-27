@@ -9,5 +9,6 @@ module.exports = {
 		sent
 		interaction.editReply(`Pong! :ping_pong:\n**Roundtrip latency:** ${sent.createdTimestamp - interaction.createdTimestamp}ms`);
 		//await interaction.reply({ embeds: [pingEmbed] });
+		console.log('Ping command - completed')
 	},
 };

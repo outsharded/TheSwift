@@ -14,7 +14,8 @@ module.exports = {
 	async execute(interaction) {
 		await interaction.reply({ content: 'Thanks! The staff team will review your report as soon as possible.', ephemeral: true });
 		const report = interaction.options.getString('report');
-		console.log(`**${interaction.member.user.username}** has reported **${report}**.`);
+		console.log(`${interaction.member.user.username} has reported ${report}.`);
 		interaction.channel.send(`<@&981927885340295209>`);
+		console.log('Report command - completed')
 	},
 };

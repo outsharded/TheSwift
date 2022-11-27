@@ -18,5 +18,6 @@ module.exports = {
 		.setDescription('Get a command list.'),
 	async execute(interaction) {
 		await interaction.reply({ embeds: [helpEmbed] });
+		console.log('Help command - completed')
 	},
 };

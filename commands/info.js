@@ -9,5 +9,6 @@ module.exports = {
 //        let cdate = new Date;
 //        cdate = cdate.getDate();
 		await interaction.reply(`**${interaction.guild.name}**\n> Date: <t:${timestamp}>\n > Member count: ${interaction.guild.memberCount}`);
+		console.log('Info command - completed')
 	},
 };
