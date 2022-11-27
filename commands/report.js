@@ -12,8 +12,7 @@ module.exports = {
 				.setRequired(true)),
 	async execute(interaction) {
         const report = interaction.options.getString('reason');
-
-        await interaction.reply({ content: `Thank you for your report. Report: ${reason}`, ephemeral: true });
+        await interaction.reply({ content: `Thank you for your report. Report: ${report}`, ephemeral: true });
         
 	},
 };

@@ -10,10 +10,10 @@ const helpEmbed = new EmbedBuilder()
 	.setDescription('Supported commands')
 //	.setThumbnail('https://i.imgur.com/AfFp7pu.png')
 	.addFields(
-		{ name: '/help', value: 'Some value here' },
-		{ name: '/info', value: '\u200B' },
-		{ name: '/report', value: 'Some value here', inline: true },
-		{ name: '/ping', value: 'Check if the bot is online.', inline: true },
+		{ name: '/help', value: 'Get a command list.' },
+		{ name: '/info', value: 'Server info.' },
+		{ name: '/report', value: 'Report an issue/user to the staff team.' },
+		{ name: '/ping', value: 'Check if the bot is online.' },
 	)
 //	.addFields({ name: 'Inline field title', value: 'Some value here', inline: true })
 //	.setImage('https://i.imgur.com/AfFp7pu.png')
