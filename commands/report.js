@@ -13,9 +13,7 @@ module.exports = {
 				.setRequired(true)),
 	async execute(interaction) {
 		await interaction.reply({ content: 'Thanks! The staff team will review your report as soon as possible.', ephemeral: true });
-	},
-	async execute(interaction) {
-		const report = interaction.options.getString('reason');
-		console.log(`**${message.author.username}** has reported **${report}**.`);
+		const report = interaction.options.getString('report');
+		console.log(`**${interaction.member.user.username}** has reported **${report}**.`);
 	},
 };
