@@ -1,25 +1,19 @@
 const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 
+//was woman command. got dewomanised. bleeding heart liberals, ey?
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('report')
-		.setDescription('womans someone')
-		.addUserOption(option =>
+		.setDescription('Report an issue/user to the staff team.')
+		.addStringOption(option =>
 			option
-				.setName('target')
-				.setDescription('The member to woman')
-				.setRequired(true))
-                .addStringOption(option =>
-                    option
-                        .setName('reason')
-                        .setDescription('The reason for womaning'))
-                        .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
-                        .setDMPermission(false),
+				.setName('report')
+				.setDescription('Describe your issue. Ping users if you are reporting them.')
+				.setRequired(true)),
 	async execute(interaction) {
-		const target = interaction.options.getMember('target');
-        const reason = interaction.options.getString('reason');
+        const report = interaction.options.getString('reason');
 
-        await interaction.reply(`Womaning ${target} for ${reason}`);
-        target.roles.add("1046123407244263465");
+        await interaction.reply({ content: `Thank you for your report. Report: ${reason}`, ephemeral: true });
+        
 	},
 };

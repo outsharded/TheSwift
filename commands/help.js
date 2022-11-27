@@ -1,12 +1,30 @@
 const { SlashCommandBuilder } = require('discord.js');
 
+//for discord.js - commented code unwanted, not removing til tested
+
+const helpEmbed = new EmbedBuilder()
+	.setColor(0x20c1ed)
+	.setTitle('Help')
+//	.setURL('https://discord.js.org/')
+//	.setAuthor({ name: 'Some name', iconURL: 'https://i.imgur.com/AfFp7pu.png', url: 'https://discord.js.org' })
+	.setDescription('Supported commands')
+//	.setThumbnail('https://i.imgur.com/AfFp7pu.png')
+	.addFields(
+		{ name: '/help', value: 'Some value here' },
+		{ name: '/info', value: '\u200B' },
+		{ name: '/report', value: 'Some value here', inline: true },
+		{ name: '/ping', value: 'Check if the bot is online.', inline: true },
+	)
+//	.addFields({ name: 'Inline field title', value: 'Some value here', inline: true })
+//	.setImage('https://i.imgur.com/AfFp7pu.png')
+	.setTimestamp()
+//	.setFooter({ text: 'Some footer text here', iconURL: 'https://i.imgur.com/AfFp7pu.png' });
+
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('help')
 		.setDescription('Get a command list.'),
 	async execute(interaction) {
-        let cdate = new Date;
-        cdate = cdate.getTime() + cdate.getDate();
-		await interaction.reply(`**${interaction.guild.name}\n**> Date: ${cdate}\n > Member count: ${interaction.guild.memberCount}`);
+		await interaction.reply({ embeds: [helpEmbed] });
 	},
 };
