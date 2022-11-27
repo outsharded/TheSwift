@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, Client, InteractionCollector,  } = require('discord.js');
+const { SlashCommandBuilder, Client  } = require('discord.js');
 const client = new Client({ intents: [] });
 
 //was woman command. got dewomanised. bleeding heart liberals, ey?
