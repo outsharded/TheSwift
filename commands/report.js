@@ -16,7 +16,6 @@ module.exports = {
 	},
 	async execute(interaction) {
 		const report = interaction.options.getString('reason');
-		const channel = Client.channels.get('id');
-		channel.send(`content ${report}`);
+		console.log(`**${message.author.username}** has reported **${report}**.`);
 	},
 };

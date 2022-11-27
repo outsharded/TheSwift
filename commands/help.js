@@ -5,9 +5,9 @@ const helpEmbed = new EmbedBuilder()
 	.setTitle('Help')
 	.setDescription('Supported commands')
 	.addFields(
-		{ name: '/help', value: 'Get a command list.' },
-		{ name: '/info', value: 'Server info.' },
-		{ name: '/report', value: 'Report an issue/user to the staff team.' },
+		{ name: '/help', value: 'Get a command list' },
+		{ name: '/info', value: 'Server info' },
+		{ name: '/vote', value: 'Vote for the server' },
 		{ name: '/ping', value: 'Check if the bot is online.' },
 	)
 	.setTimestamp()

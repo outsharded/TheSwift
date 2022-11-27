@@ -4,7 +4,7 @@ const timestamp = Math.floor(Date.now() / 1000)
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('info')
-		.setDescription('Server info.'),
+		.setDescription('Server info'),
 	async execute(interaction) {
 //        let cdate = new Date;
 //        cdate = cdate.getDate();
