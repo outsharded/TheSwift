@@ -20,7 +20,7 @@ for (const file of commandFiles) {
 client.login(token);
 
 client.on(Events.ClientReady, () => {
-    console.warn("bot is online");
+    console.warn("Bot is online");
 });
 
 
