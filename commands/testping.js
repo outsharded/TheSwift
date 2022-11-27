@@ -3,13 +3,7 @@ const { SlashCommandBuilder, EmbedBuilder, InteractionResponse } = require('disc
 const pingEmbed = new EmbedBuilder()
 	.setColor(0x20c1ed)
 	.setTitle('Pong')
-	.setDescription(`:ping_pong: ${Date.now() - Interaction.setTimestamp}ms`)
-	.addFields(
-		{ name: '/help', value: 'Get a command list.' },
-		{ name: '/info', value: 'Server info.' },
-		{ name: '/report', value: 'Report an issue/user to the staff team.' },
-		{ name: '/ping', value: 'Check if the bot is online.' },
-	)
+	.setDescription(`:ping_pong:`)
 	.setTimestamp()
 
 module.exports = {
