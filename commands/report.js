@@ -16,7 +16,6 @@ module.exports = {
 		const report = interaction.options.getString('report');
 		console.log(`${interaction.member.user.username} has reported ${report}.`);
 		interaction.channel.send(`<@&981927885340295209>`);
-		client.channels.fetch('965845517840044104').then(channel => channel.send(`${interaction.member.user.username} has reported ${report}.`))
 		console.log('Report command - completed')
 	},
 };
