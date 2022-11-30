@@ -10,6 +10,7 @@ const helpEmbed = new EmbedBuilder()
 		{ name: '/vote', value: 'Vote for the server' },
 		{ name: '/ping', value: 'Check if the bot is online' },
 		{ name: '/report', value: 'Report an issue/user to the staff team' },
+		{ name: '/password', value: 'Generate a unique, 20 charachter passowrd.' },
 	)
 	.setTimestamp()
 
