@@ -10,4 +10,4 @@ A config.js file is needed. Use this structure:
 "guildId": ""
 }`
 
-# Thanks to memer3050 for the command loader/general code structure
+## Thanks to memer3050 for the command loader/general code structure
