@@ -58,4 +58,3 @@ async execute(interaction) {
   }
 }
 
-// Log the client in using the token from the environment variable
