@@ -23,7 +23,7 @@ const row = new ActionRowBuilder()
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('vote')
-		.setDescription('Vote for the server'),
+		.setDescription('Vote for the Swift Den server'),
 	async execute(interaction) {
         //send embed and buttons for links
 		await interaction.reply({ embeds: [voteEmbed], components: [row] });
