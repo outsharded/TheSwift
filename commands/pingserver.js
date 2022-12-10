@@ -18,7 +18,7 @@ module.exports = {
           } catch (error) {
             await interaction.reply(error.message);
           }
-		console.log('Report command - completed')
+		console.log('Ping Server command - completed')
 	},
 };
 

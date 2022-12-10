@@ -47,11 +47,11 @@ async execute(interaction) {
     // Send the result back to the user
     let result;
     if (winner === 'user') {
-      result = `You win! ${userChoice} beats ${botChoiceString}.`;
+      result = `You win! Your **${userChoice}** beats my **${botChoiceString}**.`;
     } else if (winner === 'tie') {
-      result = `It's a tie! We both chose ${userChoice}.`;
+      result = `It's a tie! We both chose **${userChoice}**.`;
     } else {
-      result = `You lose! ${botChoiceString} beats ${userChoice}.`;
+      result = `You lose! My **${botChoiceString}** beats your **${userChoice}**.`;
     }
     await interaction.reply(result);
     console.log('RPS command - completed')
