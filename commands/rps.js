@@ -5,7 +5,6 @@ const { SlashCommandBuilder } = require('discord.js');
 //const client = new Discord.Client();
 
 
-//was woman command. got dewomanised. bleeding heart liberals, ey?
 module.exports = {
 	data: new SlashCommandBuilder()
     .setName('rps')

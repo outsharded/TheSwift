@@ -1,5 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
+//embeds with ccommands
 const helpEmbed = new EmbedBuilder()
 	.setColor(0x20c1ed)
 	.setTitle('Help')
@@ -10,7 +11,9 @@ const helpEmbed = new EmbedBuilder()
 		{ name: '/vote', value: 'Vote for the server' },
 		{ name: '/ping', value: 'Check if the bot is online' },
 		{ name: '/report', value: 'Report an issue/user to the staff team' },
-		{ name: '/password', value: 'Generate a unique, 20 charachter passowrd.' },
+		{ name: '/password', value: 'Generate a unique, 20 charachter password.' },
+		{ name: '/rps', value: 'Play rock, paper, scissors with the bot.' },
+		{ name: '/pingserver', value: 'Ping your server/domain from an external server.' },
 	)
 	.setTimestamp()
 

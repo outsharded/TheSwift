@@ -6,6 +6,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('report')
 		.setDescription('Report an issue/user to the staff team.')
+//option to enter report
 		.addStringOption(option =>
 			option
 				.setName('report')
@@ -14,7 +15,9 @@ module.exports = {
 	async execute(interaction) {
 		await interaction.reply({ content: 'Thanks! The staff team will review your report as soon as possible.', ephemeral: true });
 		const report = interaction.options.getString('report');
+		//log report in console
 		console.log(`${interaction.member.user.username} has reported ${report}.`);
+		//ping moderator
 		interaction.channel.send(`<@&981927885340295209>`);
 		console.log('Report command - completed')
 	},

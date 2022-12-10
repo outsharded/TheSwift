@@ -22,6 +22,7 @@ module.exports = {
 	},
 };
 
+//function to ping server
 function pingServer(ip) {
     return new Promise((resolve, reject) => {
       ping.promise.probe(ip)

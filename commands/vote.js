@@ -1,11 +1,13 @@
 const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 
+//define embed
 const voteEmbed = new EmbedBuilder()
 	.setColor(0x20c1ed)
 	.setTitle('Vote')
 	.setDescription('Thanks for supporting the server!')
 	.setTimestamp()
 
+// define links in embed
 const row = new ActionRowBuilder()
     .addComponents(
         new ButtonBuilder()
@@ -23,6 +25,7 @@ module.exports = {
 		.setName('vote')
 		.setDescription('Vote for the server'),
 	async execute(interaction) {
+        //send embed and buttons for links
 		await interaction.reply({ embeds: [voteEmbed], components: [row] });
         console.log('Vote commands - completed')
 	},
