@@ -2,31 +2,31 @@ const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, Butt
 
 //define embed
 const voteEmbed = new EmbedBuilder()
-	.setColor(0x20c1ed)
+	.setColor(0x265420)
 	.setTitle('Vote')
-	.setDescription('Thanks for supporting the server!')
+	.setDescription('Thanks for supporting the bot!')
 	.setTimestamp()
 
 // define links in embed
 const row = new ActionRowBuilder()
     .addComponents(
         new ButtonBuilder()
-            .setURL('https://top.gg/servers/918166237652062228/vote')
-            .setLabel('Top.gg')
+            .setURL('https://discord.bots.gg/bots/1045760873316229193')
+            .setLabel('Discord Bots')
             .setStyle(ButtonStyle.Link),
         new ButtonBuilder()
-            .setLabel('Discords.com')
-            .setURL('https://discords.com/servers/swift-den/upvote')
+            .setLabel('Discord Bot List')
+            .setURL('https://discordbotlist.com/bots/the-swift/upvote')
             .setStyle(ButtonStyle.Link),
     );
 
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('vote')
-		.setDescription('Vote for the Swift Den server'),
+		.setDescription('Vote for the bot!'),
 	async execute(interaction) {
         //send embed and buttons for links
 		await interaction.reply({ embeds: [voteEmbed], components: [row] });
-        console.log('Vote commands - completed')
+        console.log('Vote command - completed')
 	},
 };
