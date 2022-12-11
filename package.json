@@ -11,6 +11,7 @@
   "dependencies": {
     "discord.js": "^14.6.0",
     "generate-password": "^1.7.0",
-    "ping": "^0.4.2"
+    "ping": "^0.4.2",
+    "openai": "^3.1.0"
   }
 }

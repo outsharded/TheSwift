@@ -5,7 +5,6 @@ const { data } = require("./commands/testping");
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 const { token } = require("./config.json");
 
-
 client.commands = new Collection();
 const commandsPath = path.join(__dirname, 'commands');
 const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
