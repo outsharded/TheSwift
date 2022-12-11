@@ -14,7 +14,7 @@ module.exports = {
         const ip = interaction.options.getString("domain")
         try {
             const responseTime = await pingServer(ip);
-            await interaction.reply(`Response time from server: ${responseTime} ms.`);
+            await interaction.reply(`Response time from **${ip}**: ${responseTime} ms.`);
           } catch (error) {
             await interaction.reply(error.message);
           }
