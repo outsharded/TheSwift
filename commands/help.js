@@ -8,12 +8,12 @@ const helpEmbed = new EmbedBuilder()
 	.addFields(
 		{ name: '/help', value: 'Get a command list' },
 		{ name: '/info', value: 'Server info' },
-		{ name: '/vote', value: 'Vote for the Swift Den server' },
 		{ name: '/ping', value: 'Check if the bot is online' },
-		{ name: '/report', value: 'Report an issue/user to the staff team' },
 		{ name: '/password', value: 'Generate a unique, 20 charachter password.' },
 		{ name: '/rps', value: 'Play rock, paper, scissors with the bot.' },
 		{ name: '/pingserver', value: 'Ping your server/domain from an external server.' },
+		{ name: '/vote', value: 'Vote for the server **Only on the Swift Den**' },
+		{ name: '/report', value: 'Report an issue/user to the staff team **Only on the Swift Den**' },
 	)
 	.setTimestamp()
 
