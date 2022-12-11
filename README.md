@@ -1,5 +1,7 @@
 # The Swift
-Bot for the Swift Den Discord: https://discord.gg/DzpaehyZyv
+Bot built for the Swift Den Discord: https://discord.gg/DzpaehyZyv
+Now available for public use.
+
 
 ## config.js
 
