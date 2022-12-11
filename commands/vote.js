@@ -11,10 +11,6 @@ const voteEmbed = new EmbedBuilder()
 const row = new ActionRowBuilder()
     .addComponents(
         new ButtonBuilder()
-            .setURL('https://discord.bots.gg/bots/1045760873316229193')
-            .setLabel('Discord Bots')
-            .setStyle(ButtonStyle.Link),
-        new ButtonBuilder()
             .setLabel('Discord Bot List')
             .setURL('https://discordbotlist.com/bots/the-swift/upvote')
             .setStyle(ButtonStyle.Link),
