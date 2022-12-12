@@ -20,7 +20,7 @@ client.login(token);
 
 client.on(Events.ClientReady, () => {
     console.warn("Bot is online");
-    client.user.setActivity('/help for more info')
+    client.user.setActivity('/help')
 });
 
 
