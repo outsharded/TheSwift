@@ -23,12 +23,12 @@ module.exports = {
 //			await interaction.reply({ content: `You're banned from this command.`, ephemeral: true });
 //		} else {
         const prompt = interaction.options.getString('prompt')           
-        const sent = await interaction.reply({ content: `Creating ${prompt}`, fetchReply: true });
-        sent
+        const sent = await interaction.reply({ content: `Creating **${prompt}**`, fetchReply: true });
         const response = await openai.createImage({
                 prompt: prompt,
                 n: 1,
-                size: "512x512",
+                size: "256x256",
+				user: interaction.member.user.id
         });
         console.log(response.data.data[0].url)
         interaction.editReply(`**Generated image**: ${prompt}: ${response.data.data[0].url}`);

@@ -24,10 +24,11 @@ module.exports = {
 //		} else {
 			const prompt = interaction.options.getString('prompt')
 			const completion = await openai.createCompletion({
-					"model": "text-ada-001",
+					"model": "text-babbage-001",
 					"prompt": prompt,
 					"temperature": .5,
-					"max_tokens": 100
+					"max_tokens": 100,
+					"user": interaction.member.user.id
 			})
 			await interaction.reply(`**Generated text**: ${prompt}${completion.data.choices[0].text}`)
 			//log report in console
