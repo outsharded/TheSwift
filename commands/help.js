@@ -13,7 +13,8 @@ const helpEmbed = new EmbedBuilder()
 		{ name: '/rps', value: 'Play rock, paper, scissors with the bot.' },
 		{ name: '/pingserver', value: 'Ping your server/domain from an external server.' },
 		{ name: '/vote', value: 'Vote for the bot' },
-		{ name: '/generate', value: 'Use the GPT-3 text generation engine to create text!' },
+		{ name: '/text', value: 'Use the GPT-3 text generation engine to create text!' },
+		{ name: '/image', value: 'Use the DALL_E image generation engine to create images!' },
 	)
 	.setTimestamp()
 

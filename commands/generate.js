@@ -10,12 +10,12 @@ const openai = new OpenAIApi(configuration);
 //was woman command. got dewomanised. bleeding heart liberals, ey?
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('generate')
-		.setDescription('Use the AI GPT-3 to create text. (Capped at approx. 300 characters.')
+		.setName('text')
+		.setDescription('Use the AI GPT-3 to create text. (Capped at approx. 300 characters.)')
 		.addStringOption(option =>
 			option
 				.setName('prompt')
-				.setDescription('Write a prompt to give to the AI. It can aouto complet sentences or create strings based')
+				.setDescription('Write a prompt to give to the AI. Keep it short and desciptive.')
 				.setRequired(true)),
 	async execute(interaction) {
 //		if (bannedIDs.includes(interaction.member.user.id)) {
