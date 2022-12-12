@@ -10,7 +10,7 @@ const openai = new OpenAIApi(configuration);
 //was woman command. got dewomanised. bleeding heart liberals, ey?
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('generate')
+		.setName('image')
 		.setDescription('Use the OpenAI DALL-E to create images!')
 		.addStringOption(option =>
 			option
@@ -22,16 +22,18 @@ module.exports = {
 			// If user is in list, stop the
 //			await interaction.reply({ content: `You're banned from this command.`, ephemeral: true });
 //		} else {
-			const prompt = interaction.options.getString('prompt')
-            const response = await openai.createImage({
+        const prompt = interaction.options.getString('prompt')           
+        const sent = await interaction.reply({ content: `Creating ${prompt}`, fetchReply: true });
+        sent
+        const response = await openai.createImage({
                 prompt: prompt,
                 n: 1,
-                size: "256x256",
-            });
-			await interaction.reply(`**Generated image**: ${prompt}: ${response.data.data[0].url}`)
-			//log report in console
-			console.warn(`${interaction.member.user.id} ${interaction.member.user.username} Input:${prompt} Output: ${completion.data.choices[0].text}`)
-			console.log('Text command - completed')
+                size: "512x512",
+        });
+        console.log(response.data.data[0].url)
+        interaction.editReply(`**Generated image**: ${prompt}: ${response.data.data[0].url}`);
+		console.warn(`${interaction.member.user.id} ${interaction.member.user.username} Input:${prompt} Output: ${response.data.data[0].url}`)
+		console.log('Image command - completed')
 //	}
 	},
 };
