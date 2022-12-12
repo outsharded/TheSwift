@@ -14,6 +14,10 @@ const row = new ActionRowBuilder()
             .setLabel('Discord Bot List')
             .setURL('https://discordbotlist.com/bots/the-swift/upvote')
             .setStyle(ButtonStyle.Link),
+		new ButtonBuilder()
+            .setLabel('discords.com')
+            .setURL('https://discords.com/bots/bot/1045760873316229193/vote')
+            .setStyle(ButtonStyle.Link),
     );
 
 module.exports = {
