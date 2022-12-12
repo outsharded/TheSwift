@@ -11,7 +11,7 @@ const openai = new OpenAIApi(configuration);
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('text')
-		.setDescription('Use the AI GPT-3 to create text. (Capped at approx. 300 characters.)')
+		.setDescription('Use the AI GPT-3 to create text. (Capped at approx. 200 words)')
 		.addStringOption(option =>
 			option
 				.setName('prompt')
@@ -27,7 +27,7 @@ module.exports = {
 					"model": "text-babbage-001",
 					"prompt": prompt,
 					"temperature": .5,
-					"max_tokens": 100,
+					"max_tokens": 300,
 					"user": interaction.member.user.id
 			})
 			await interaction.reply(`**Generated text**: ${prompt}${completion.data.choices[0].text}`)
