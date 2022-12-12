@@ -11,7 +11,7 @@ cd TheSwift
 npm install
 nano config.json
 ```
-### config.json sturcutr:
+### config.json structure:
 
 `{
 "token": "",
@@ -20,4 +20,4 @@ nano config.json
 "OPENAI_API_KEY": ""
 }`
 
-## Thanks to memer3050 for the command loader/general code structure
+#### Thanks to memer3050 for the command loader/general code structure
