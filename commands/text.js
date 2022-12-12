@@ -26,7 +26,7 @@ module.exports = {
 			const completion = await openai.createCompletion({
 					"model": "text-babbage-001",
 					"prompt": prompt,
-					"temperature": .5,
+					"temperature": .4,
 					"max_tokens": 300,
 					"user": interaction.member.user.id
 			})
