@@ -27,6 +27,6 @@ module.exports = {
 	async execute(interaction) {
         //send embed and buttons for links
 		await interaction.reply({ embeds: [voteEmbed], components: [row] });
-        console.log('Vote Server command - completed')
+        console.log('Vote server command - completed')
 	},
 };
