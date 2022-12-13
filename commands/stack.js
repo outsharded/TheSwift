@@ -35,7 +35,7 @@ module.exports = {
     const title = topResult.title;
     const link = topResult.link;
 
-    // Send a message to the Discord channel with the title and link of the top result
+    // Send remply the Discord interaction with the title and link of the top result
     await interaction.reply(`**Top result:** ${title}\n${link}`);
     console.log(`Stack command - completed`)
     } catch (error) {
