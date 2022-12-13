@@ -6,6 +6,8 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 //const bannedIDs = []
+//commneted code is a ban system
+
 
 module.exports = {
 	data: new SlashCommandBuilder()

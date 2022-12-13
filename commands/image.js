@@ -6,8 +6,8 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 //const bannedIDs = []
+//commneted code is a ban system
 
-//was woman command. got dewomanised. bleeding heart liberals, ey?
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('image')
@@ -43,13 +43,3 @@ module.exports = {
 //	}
 	},
 };
-
-//(async () => {
-//const response = await openai.createImage({
-//    prompt: "a white siamese cat",
-//    n: 1,
-//    size: "256x256",
-//  });
-//  image_url = response.data.data[0].url;
-//  console.log(response.data.data[0].url)
-//})();
