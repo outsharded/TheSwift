@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, SlashCommandStringOption } = require('discord.js');
 const { OPENAI_API_KEY } = require("../config.json");
 const { Configuration, OpenAIApi } = require("openai");
 const configuration = new Configuration({
@@ -22,7 +22,8 @@ module.exports = {
 			// If user is in list, stop the
 //			await interaction.reply({ content: `You're banned from this command.`, ephemeral: true });
 //		} else {
-			const prompt = interaction.options.getString('prompt')
+		const prompt = interaction.options.getString('prompt')
+		try {
 			const completion = await openai.createCompletion({
 					"model": "text-babbage-001",
 					"prompt": prompt,
@@ -34,6 +35,10 @@ module.exports = {
 			//log report in console
 			console.warn(`${interaction.member.user.id} ${interaction.member.user.username} Input:${prompt} Output: ${completion.data.choices[0].text}`)
 			console.log('Text command - completed')
+		} catch (error) {
+			await interaction.editReply(error.message);
+			console.warn(`Text command failed.`)
+		}
 //	}
 	},
 };

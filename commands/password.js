@@ -1,11 +1,10 @@
-const { SlashCommandBuilder, EmbedBuilder, Client } = require('discord.js');
-const client = new Client({ intents: [] });
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const generator = require('generate-password');
 
 const whyEmbed = new EmbedBuilder()
 	.setColor(0x20c1ed)
 	.setTitle('Why do I need good passwords?')
-	.setDescription('Ceating a strong and secure password can reduce the risk of cybercriminals guessing your password and accessing sensitive data. Compromised passwords caused 80% of all data breaches in 2019.\n')
+	.setDescription('Creating a strong and secure password can reduce the risk of cybercriminals guessing your password and accessing sensitive data. Compromised passwords caused 80% of all data breaches in 2019.\n')
 	.addFields(
 		{ name: '/password', value: 'Our passord generator creates passwords that would take over **3 qintillion years** for a home computer to crack.' },
 	)

@@ -25,16 +25,21 @@ module.exports = {
         const prompt = interaction.options.getString('prompt')           
 //        const sent = 
 		await interaction.reply({ content: `Creating **${prompt}**`, fetchReply: true });
-        const response = await openai.createImage({
-                prompt: prompt,
-                n: 1,
-                size: "256x256",
-				user: interaction.member.user.id
-        });
-        console.log(response.data.data[0].url)
-        interaction.editReply(`**Generated image**: ${prompt}: ${response.data.data[0].url}`);
-		console.warn(`${interaction.member.user.id} ${interaction.member.user.username} Input:${prompt} Output: ${response.data.data[0].url}`)
-		console.log('Image command - completed')
+		try {
+        	const response = await openai.createImage({
+            	    prompt: prompt,
+                	n: 1,
+                	size: "256x256",
+					user: interaction.member.user.id
+        	});
+        	console.log(response.data.data[0].url)
+        	interaction.editReply(`**Generated image**: ${prompt}: ${response.data.data[0].url}`);
+			console.warn(`${interaction.member.user.id} ${interaction.member.user.username} Input:${prompt} Output: ${response.data.data[0].url}`)
+			console.log('Image command - completed')
+	} catch (error) {
+		await interaction.editReply(error.message);
+		console.warn(`Image command failed.`)
+	}
 //	}
 	},
 };

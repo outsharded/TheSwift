@@ -23,17 +23,22 @@ module.exports = {
 //		} else {
 			const prompt = interaction.options.getString('prompt')
 			await interaction.reply({ content: `Creating: **${prompt}**`, fetchReply: true });
-			const completion = await openai.createCompletion({
+			try {
+				const completion = await openai.createCompletion({
 					"model": "code-davinci-002",
 					"prompt": prompt,
-					"temperature": .6,
+					"temperature": .9,
 					"max_tokens": 200,
 					"user": interaction.member.user.id
-			})
-			interaction.editReply(`**Promt: ${prompt}:**\n >>> ${completion.data.choices[0].text}`);
+				})
+				interaction.editReply(`**Promt: ${prompt}:**\n >>> ${completion.data.choices[0].text}`);
 			//log report in console
-			console.warn(`${interaction.member.user.id} ${interaction.member.user.username} Input:${prompt} Output: ${completion.data.choices[0].text}`)
-			console.log('code command - completed')
+				console.warn(`${interaction.member.user.id} ${interaction.member.user.username} Input:${prompt} Output: ${completion.data.choices[0].text}`)
+				console.log('code command - completed')
+			} catch (error) {
+				await interaction.editReply(error.message);
+				console.warn(`Code command failed.`)
+			}
 //	}
 	},
 };
