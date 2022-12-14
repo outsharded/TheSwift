@@ -1,7 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
 //embeds with ccommands
-const helpEmbed = new EmbedBuilder()
+const helpEmbed1 = new EmbedBuilder()
 	.setColor(0x265420)
 	.setTitle('Help')
 	.setDescription('Supported commands')
@@ -13,8 +13,10 @@ const helpEmbed = new EmbedBuilder()
 		{ name: '/rps', value: 'Play rock, paper, scissors with the bot.' },
 		{ name: '/pingserver', value: 'Ping your server/domain from an external server.' },
 		{ name: '/vote', value: 'Vote for the bot' },
-		{ name: '/text', value: 'Use the GPT-3 text generation engine to create text!' },
-		{ name: '/image', value: 'Use the DALL_E image generation engine to create images!' },
+		{ name: '/text', value: 'Use the GPT-3 text generation engine to create text' },
+		{ name: '/image', value: 'Use the DALL_E image generation engine to create images' },
+		{ name: '/code', value: 'Use the GPT-Code generation engine to create code' },
+		{ name: '/stack', value: 'Search for your issue on StackOverflow and reurn the top post' },
 	)
 	.setTimestamp()
 
@@ -23,7 +25,7 @@ module.exports = {
 		.setName('help')
 		.setDescription('Get a command list.'),
 	async execute(interaction) {
-		await interaction.reply({ embeds: [helpEmbed] });
+		await interaction.reply({ embeds: [helpEmbed1] });
 		console.log('Help command - completed')
 	},
 };
