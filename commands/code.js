@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const { OPENAI_API_KEY } = require("../config.json");
 const { Configuration, OpenAIApi } = require("openai");
 const configuration = new Configuration({
@@ -24,16 +24,28 @@ module.exports = {
 //			await interaction.reply({ content: `You're banned from this command.`, ephemeral: true });
 //		} else {
 			const prompt = interaction.options.getString('prompt')
-			await interaction.reply({ content: `Creating: **${prompt}**`, fetchReply: true });
+			const makingEmbed = new EmbedBuilder()
+			.setColor(0x5c95b5)
+			.setTitle(`Generating: ${prompt}`)
+			.setTimestamp()
+    		.setFooter({ text: `We use OpenAI's Codex engine to generate code!` });      
+//        const sent = 
+		await interaction.reply({ embeds: [makingEmbed] });
 			try {
 				const completion = await openai.createCompletion({
-					"model": "code-davinci-002",
+					"model": "code-cushman-002",
 					"prompt": prompt,
 					"temperature": .9,
-					"max_tokens": 200,
+					"max_tokens": 300,
 					"user": interaction.member.user.id
 				})
-				interaction.editReply(`**Promt: ${prompt}:**\n >>> ${completion.data.choices[0].text}`);
+				const madeEmbed = new EmbedBuilder()
+				.setColor(0x5c95b5)
+				.setTitle(`I generated: ${prompt}`)
+				.setDescription(completion.data.choices[0].text)
+				.setTimestamp()
+				.setFooter({ text: `We use OpenAI's Codex engine to generate code!` });
+				interaction.editReply({ embeds: [madeEmbed], fetchReply: true  });
 			//log report in console
 				console.warn(`${interaction.member.user.id} ${interaction.member.user.username} Input:${prompt} Output: ${completion.data.choices[0].text}`)
 				console.log('code command - completed')

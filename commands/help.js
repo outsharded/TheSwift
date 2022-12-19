@@ -2,7 +2,7 @@ const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
 //embeds with ccommands
 const helpEmbed1 = new EmbedBuilder()
-	.setColor(0x265420)
+	.setColor(0x5c95b5)
 	.setTitle('Help')
 	.setDescription('Supported commands')
 	.addFields(

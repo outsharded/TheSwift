@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -10,8 +10,14 @@ module.exports = {
 		//send response
 		sent
 		//then update message with ping
-		interaction.editReply(`Pong! :ping_pong:\n**Roundtrip latency:** ${sent.createdTimestamp - interaction.createdTimestamp}ms`);
-		//await interaction.reply({ embeds: [pingEmbed] });
+		const pinged = new EmbedBuilder()
+			.setColor(0x5c95b5)
+			.setTitle(`Pong! :ping_pong`)
+			.addFields(
+				{ name: 'Roundtrip latency', value: `${sent.createdTimestamp - interaction.createdTimestamp}` },
+			)
+			.setTimestamp()
+		interaction.editReply({ content: '', embeds: [pinged] });
 		console.log('Ping command - completed')
 	},
 };

@@ -1,4 +1,5 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const { response } = require('express');
 const ping = require('ping');
 
 module.exports = {
@@ -14,7 +15,12 @@ module.exports = {
         const ip = interaction.options.getString("domain")
         try {
             const responseTime = await pingServer(ip);
-            await interaction.reply(`Response time from server: ${responseTime} ms.`);
+            const pinged = new EmbedBuilder()
+            .setColor(0x5c95b5)
+            .setTitle(`Pinged ${ip}`)
+            .setDescription(`Response time from server: ${responseTime} ms.`)
+            .setTimestamp()
+            await interaction.reply({ embeds: [pinged] });
           } catch (error) {
             await interaction.reply(error.message);
           }

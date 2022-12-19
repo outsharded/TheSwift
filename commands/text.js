@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, SlashCommandStringOption } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const { OPENAI_API_KEY } = require("../config.json");
 const { Configuration, OpenAIApi } = require("openai");
 const configuration = new Configuration({
@@ -28,15 +28,21 @@ module.exports = {
 					"model": "text-babbage-001",
 					"prompt": prompt,
 					"temperature": .4,
-					"max_tokens": 300,
+					"max_tokens": 500,
 					"user": interaction.member.user.id
 			})
-			await interaction.reply(`**Generated text**: ${prompt}${completion.data.choices[0].text}`)
+			const madeEmbed = new EmbedBuilder()
+			.setColor(0x5c95b5)
+			.setTitle(`${prompt}:`)
+			.setDescription(completion.data.choices[0].text)
+			.setTimestamp()
+			.setFooter({ text: `We use OpenAI's GPT-3 to generate text!` });
+			interaction.reply({ embeds: [madeEmbed], fetchReply: true  });
 			//log report in console
 			console.warn(`${interaction.member.user.id} ${interaction.member.user.username} Input:${prompt} Output: ${completion.data.choices[0].text}`)
 			console.log('Text command - completed')
 		} catch (error) {
-			await interaction.editReply(error.message);
+			await interaction.reply(error.message);
 			console.warn(`Text command failed.`)
 		}
 //	}

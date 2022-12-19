@@ -1,5 +1,5 @@
 //const Discord = require('discord.js');
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
 // Create a new Discord client
 //const client = new Discord.Client();
@@ -52,7 +52,12 @@ async execute(interaction) {
     } else {
       result = `You lose! My **${botChoiceString}** beats your **${userChoice}**.`;
     }
-    await interaction.reply(result);
+    const rps = new EmbedBuilder()
+    .setColor(0x5c95b5)
+    .setTitle('Rock :rock:, Paper :newspaper:, Scissors :scissors:')
+    .setDescription(result)
+    .setTimestamp()
+    await interaction.reply({ embeds: [rps] });
     console.log('RPS command - completed')
   }
 }

@@ -2,7 +2,7 @@ const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, Butt
 
 //define embed
 const voteEmbed = new EmbedBuilder()
-	.setColor(0x265420)
+	.setColor(0x5c95b5)
 	.setTitle('Vote')
 	.setDescription('Thanks for supporting the bot!')
 	.setTimestamp()
@@ -17,6 +17,10 @@ const row = new ActionRowBuilder()
 		new ButtonBuilder()
             .setLabel('discords.com')
             .setURL('https://discords.com/bots/bot/1045760873316229193/vote')
+            .setStyle(ButtonStyle.Link),
+        new ButtonBuilder()
+            .setLabel('top.gg')
+            .setURL('https://top.gg/bot/1045760873316229193/vote')
             .setStyle(ButtonStyle.Link),
     );
 
