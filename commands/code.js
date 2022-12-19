@@ -45,7 +45,7 @@ module.exports = {
 				.setDescription(completion.data.choices[0].text)
 				.setTimestamp()
 				.setFooter({ text: `We use OpenAI's Codex engine to generate code!` });
-				interaction.editReply({ embeds: [madeEmbed], fetchReply: true  });
+				interaction.editReply({ embeds: [madeEmbed] });
 			//log report in console
 				console.warn(`${interaction.member.user.id} ${interaction.member.user.username} Input:${prompt} Output: ${completion.data.choices[0].text}`)
 				console.log('code command - completed')
