@@ -22,7 +22,7 @@ module.exports = {
 
         let text = " ";
         for (let i = 0; i < wLen; i++) {
-          text += '<@' + warnsGuild[i].modId + '> warned <@' + warnsGuild[i].userId + '> for ' + warnsGuild[i].reason + '\n**ID**: ' + warnsGuild[i]._id + '\n\n';
+          text += '<@' + warnsGuild[i].userId + '> for ' + warnsGuild[i].reason + '\n';
         }
 
         const warnsEmbed = new EmbedBuilder()
