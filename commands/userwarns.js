@@ -22,7 +22,7 @@ module.exports = {
         } else {
         const user = interaction.options.getUser("user")
         try {
-        const warnsUser = await Warn.find({ guildId: interaction.guild_id, userId: user.id });
+        const warnsUser = await Warn.find({ guildId: interaction.guild.id, userId: user.id });
         console.log(warnsUser)
         let wLen = warnsUser.length;
         let text = "";
