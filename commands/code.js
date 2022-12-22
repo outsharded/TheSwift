@@ -23,8 +23,8 @@ module.exports = {
 			// If user is in list, stop the
 //			await interaction.reply({ content: `You're banned from this command.`, ephemeral: true });
 //		} else {
-			const prompt = interaction.options.getString('prompt')
-			const makingEmbed = new EmbedBuilder()
+		const prompt = interaction.options.getString('prompt')
+		const makingEmbed = new EmbedBuilder()
 			.setColor(0x5c95b5)
 			.setTitle(`Generating: ${prompt}`)
 			.setTimestamp()
