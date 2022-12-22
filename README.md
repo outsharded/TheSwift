@@ -1,5 +1,5 @@
 # The Swift
-Bot built for the (Swift Den Discord server)[https://discord.gg/DzpaehyZyv]
+Bot built for the [Swift Den Discord server](https://discord.gg/DzpaehyZyv)
 Now available for public use. If you do not want to modify the code, use [our bot](https://discord.com/api/oauth2/authorize?client_id=1045760873316229193&permissions=274878179328&scope=bot%20applications.commands)
 
 ## MongoDB
