@@ -16,7 +16,7 @@ module.exports = {
             await interaction.reply({ content: "You cannot see warns!", ephemeral: true })
         } else {
         try {
-        const warnsGuild = await Warn.find({ guildId: interaction.guild_id });
+        const warnsGuild = await Warn.find({ guildId: interaction.guild.id });
         console.log(warnsGuild)
         let wLen = warnsGuild.length;
 
