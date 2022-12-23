@@ -12,7 +12,7 @@ module.exports = {
         .addStringOption(option =>
             option
                 .setName('id')
-                .setDescription('ID of warning: get it from /warns.')
+                .setDescription('ID of warning: get it from /warns user.')
                 .setRequired(true))
         .setDefaultMemberPermissions(PermissionFlagsBits.KickMembers),
 	async execute(interaction) {
