@@ -54,9 +54,10 @@ module.exports = {
 					{ name: 'Admin/Moderator', value: '2' },
 				)),
 	async execute(interaction) {
-		if (interaction.options.getString() === "1") {
+		const page = interaction.options.getString('page')
+		if (page == '1') {
 		await interaction.reply({ embeds: [helpEmbed1]})
-		} else {
+		} else if (page == '2') {
 		await interaction.reply({ embeds: [helpEmbed2], ephemeral: true })
 		}
 		console.log('Help command - completed')
