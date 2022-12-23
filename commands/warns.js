@@ -34,7 +34,7 @@ module.exports = {
         await interaction.reply({ embeds: [warnsEmbed]});
     } catch (error) {
         await interaction.reply(error.message);
-        console.warn(`Text command failed.`)
+        console.warn(`warns command failed.`)
     }
     }
 		console.log('warns command - completed')
