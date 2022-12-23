@@ -3,8 +3,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
+mongoose.set('strictQuery', true);
 const Warn = require('../models/WarnSchema');
-mongoose.connect('mongodb://127.0.0.1:27017/test', { useNewUrlParser: true, useUnifiedTopology: true, })
+mongoose.connect('mongodb://127.0.0.1:27017/warns', { useNewUrlParser: true, useUnifiedTopology: true, })
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -22,7 +23,7 @@ module.exports = {
         } else {
         const user = interaction.options.getUser("user")
         try {
-        const warnsUser = await Warn.find({ guildId: interaction.guild_id, userId: user.id });
+        const warnsUser = await Warn.find({ guildId: interaction.guild.id, userId: user.id });
         console.log(warnsUser)
         let wLen = warnsUser.length;
         let text = "";

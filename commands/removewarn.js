@@ -2,7 +2,8 @@ const { SlashCommandBuilder, EmbedBuilder, IntegrationExpireBehavior, Permission
 const mongoose = require('mongoose');
 const Warn = require('../models/WarnSchema');
 
-mongoose.connect('mongodb://127.0.0.1:27017/test', { useNewUrlParser: true, useUnifiedTopology: true, })
+mongoose.set('strictQuery', true);
+mongoose.connect('mongodb://127.0.0.1:27017/warns', { useNewUrlParser: true, useUnifiedTopology: true, })
 
 module.exports = {
 	data: new SlashCommandBuilder()

@@ -2,7 +2,8 @@ const { SlashCommandBuilder, EmbedBuilder, IntegrationExpireBehavior, Permission
 const mongoose = require('mongoose');
 const Warn = require('../models/WarnSchema');
 
-mongoose.connect('mongodb://127.0.0.1:27017/test', { useNewUrlParser: true, useUnifiedTopology: true, })
+mongoose.set('strictQuery', true);
+mongoose.connect('mongodb://127.0.0.1:27017/warns', { useNewUrlParser: true, useUnifiedTopology: true, })
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -26,7 +27,7 @@ module.exports = {
         const user = interaction.options.getUser("user")
         const reason = interaction.options.getString("reason") ?? 'No reason provided';
         const newWarn = new Warn({ 
-            guildId: interaction.guild_id,
+            guildId: interaction.guild.id,
             modId: interaction.member.user.id,
             userId: user.id,
             reason: reason
