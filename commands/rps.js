@@ -23,13 +23,13 @@ async execute(interaction) {
     const userChoice = interaction.options.getString("choice")
 
     // Generate a random number to determine the bot's choice
-    const botChoice = Math.floor(Math.random() * 3) + 1;
+    const botChoice = Math.floor(Math.random() * 3);
 
     // Define the possible choices as an array
     const choices = ['rock', 'paper', 'scissors'];
 
     // Use the bot's random number to get its choice
-    const botChoiceString = choices[botChoice - 1];
+    const botChoiceString = choices[botChoice];
 
     // Determine the winner
     let winner;
