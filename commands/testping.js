@@ -12,7 +12,7 @@ module.exports = {
 		//then update message with ping
 		const pinged = new EmbedBuilder()
 			.setColor(0x5c95b5)
-			.setTitle(`Pong! :ping_pong`)
+			.setTitle(`Pong! :ping_pong:`)
 			.addFields(
 				{ name: 'Roundtrip latency', value: `${sent.createdTimestamp - interaction.createdTimestamp}` },
 			)
