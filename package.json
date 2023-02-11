@@ -13,8 +13,8 @@
     "generate-password": "^1.7.0",
     "ping": "^0.4.2",
     "openai": "^3.1.0",
-    "axios": "^1.2.1",
+    "axios": "^1.2.2",
     "express": "^4.18.2",
-    "mongoose": "^6.8.1"
+    "mongoose": "^6.8.3"
   }
 }
