@@ -49,8 +49,7 @@ module.exports = {
             } else {
                 const id = interaction.options.getString("id")
                 try {
-                const warn = await Warn.find({ _id: id });
-                await warn[0].remove();
+                await Character.deleteOne({ _id: id });
                 const remwarnsEmbed = new EmbedBuilder()
                     .setColor(0x5c95b5)
                     .setTitle('Sucessfully removed warning.')
