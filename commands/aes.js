@@ -32,4 +32,6 @@ module.exports = {
 		console.log('aes command - completed')
 	},
 };
-s
+
+// Left an S here lol
+// NOTE: Havent Tested!!!
