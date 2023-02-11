@@ -24,4 +24,4 @@ nano config.json
 "OPENAI_API_KEY": ""
 }`
 
-#### Thanks to memer3050 for the command loader/general code structure
+#### Thanks to memer#0001 for the command loader/general code structure
