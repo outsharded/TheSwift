@@ -2,7 +2,7 @@ const { Client, IntentsBitField, GatewayIntentBits, Events, REST, Collection } =
 const fs = require("fs");
 const path = require("path");
 const { data } = require("./commands/testping");
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.DirectMessages] });
 const { token } = require("./config.json");
 
 client.commands = new Collection();
@@ -39,3 +39,5 @@ client.on(Events.InteractionCreate, async interaction => {
 		await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
 	}
 });
+
+

@@ -1,4 +1,5 @@
-const { SlashCommandBuilder, EmbedBuilder, IntegrationExpireBehavior, PermissionsBitField, PermissionFlagsBits  } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, GatewayIntentBits, PermissionsBitField, PermissionFlagsBits, Client  } = require('discord.js');
+const fs = require("fs");
 const mongoose = require('mongoose');
 const Warn = require('../models/WarnSchema');
 
@@ -38,11 +39,13 @@ module.exports = {
         .setColor(0x5c95b5)
         .setTitle('Sucessful warning')
         .setDescription(`Warned <@${user.id}> for **${reason}**`)
-        .setTimestamp()    
+        .setTimestamp()
+        await user.send(`You have been warned in **${interaction.guild.name}** for **${reason}** by <@${interaction.member.user.id}>`)
         await interaction.reply({ embeds: [warnEmbed]});
     } catch (error) {
         await interaction.reply(error.message);
-        console.warn(`Text command failed.`)
+        console.error(error.message)
+        console.warn(`warn command failed.`)
     }
     }
 		console.log('warn command - completed')

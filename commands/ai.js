@@ -37,7 +37,7 @@ module.exports = {
                     .setDescription('Write a prompt to give to the AI. Keep it short and desciptive.')
                     .setRequired(true))),
 	async execute(interaction) {
-//		if (bannedIDs.includes(interaction.member.user.id)) {
+//		if (bannedIDs.includes(interaction.user.id)) {
 			// If user is in list, stop the
 //			await interaction.reply({ content: `You're banned from this command.`, ephemeral: true });
 //		} else {
@@ -49,7 +49,7 @@ module.exports = {
 					"prompt": prompt,
 					"temperature": .4,
 					"max_tokens": 500,
-					"user": interaction.member.user.id
+					"user": interaction.user.id
 			})
 			const madeEmbed = new EmbedBuilder()
 			.setColor(0x5c95b5)
@@ -59,7 +59,7 @@ module.exports = {
 			.setFooter({ text: `We use OpenAI's GPT-3 to generate text!` });
 			interaction.reply({ embeds: [madeEmbed], fetchReply: true  });
 			//log report in console
-			console.warn(`${interaction.member.user.id} ${interaction.member.user.username} Input:${prompt} Output: ${completion.data.choices[0].text}`)
+			console.warn(`${interaction.user.id} ${interaction.user.username} Input:${prompt} Output: ${completion.data.choices[0].text}`)
 			console.log('Text command - completed')
 		} catch (error) {
 			await interaction.reply(error.message);
@@ -81,7 +81,7 @@ module.exports = {
                         "prompt": prompt,
                         "temperature": .9,
                         "max_tokens": 300,
-                        "user": interaction.member.user.id
+                        "user": interaction.user.id
                     })
                     const madeEmbed = new EmbedBuilder()
                     .setColor(0x5c95b5)
@@ -91,7 +91,7 @@ module.exports = {
                     .setFooter({ text: `We use OpenAI's Codex engine to generate code!` });
                     interaction.editReply({ embeds: [madeEmbed] });
                 //log report in console
-                    console.warn(`${interaction.member.user.id} ${interaction.member.user.username} Input:${prompt} Output: ${completion.data.choices[0].text}`)
+                    console.warn(`${interaction.user.id} ${interaction.user.username} Input:${prompt} Output: ${completion.data.choices[0].text}`)
                     console.log('code command - completed')
                 } catch (error) {
                     await interaction.editReply(error.message);
@@ -111,7 +111,7 @@ module.exports = {
             	    prompt: prompt,
                 	n: 1,
                 	size: "256x256",
-					user: interaction.member.user.id
+					user: interaction.user.id
         	});
 		const madeEmbed = new EmbedBuilder()
 			.setColor(0x5c95b5)
@@ -123,7 +123,7 @@ module.exports = {
 //Logging and reponse			
         	console.log(response.data.data[0].url)
         	interaction.editReply({ embeds: [madeEmbed], fetchReply: true  });
-			console.warn(`${interaction.member.user.id} ${interaction.member.user.username} Input:${prompt} Output: ${response.data.data[0].url}`)
+			console.warn(`${interaction.user.id} ${interaction.user.username} Input:${prompt} Output: ${response.data.data[0].url}`)
 			console.log('Image command - completed')
 	} catch (error) {
 		await interaction.editReply(error.message);
