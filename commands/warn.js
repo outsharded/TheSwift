@@ -25,9 +25,11 @@ module.exports = {
 	async execute(interaction) {
         const dm = await Setting.find({ type: 1, guildId: interaction.guild.id });
         const dm_val = await Setting.find({ type: 2, guildId: interaction.guild.id });
+
         if (!interaction.member.permissions.has(PermissionsBitField.Flags.KickMembers)) {
             await interaction.reply({ content: "You are not allowed to warn members!", ephemeral: true })
         } else {
+            
         const user = interaction.options.getUser("user")
         const reason = interaction.options.getString("reason") ?? 'No reason provided';
         const newWarn = new Warn({ 
@@ -43,12 +45,12 @@ module.exports = {
         .setTitle('Sucessful warning')
         .setDescription(`Warned <@${user.id}> for **${reason}**`)
         .setTimestamp()
-        if (dm.value = 'False') {
+        if (dm[0].value == 'false') {
             await interaction.reply({ embeds: [warnEmbed]});
         } else {
-            if (dm_val.value = '2') {
+            if (dm_val[0].value == '2') {
                 await user.send(`You have been warned in **${interaction.guild.name}** for **${reason}**`)
-            } else if (dm_val = '1') {
+            } else if (dm_val[0].value == '1') {
                 await user.send(`You have been warned in **${interaction.guild.name}**`)
             } else  {
                 await user.send(`You have been warned in **${interaction.guild.name}** for **${reason}** by <@${interaction.member.user.id}>`)
