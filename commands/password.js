@@ -6,7 +6,7 @@ const whyEmbed = new EmbedBuilder()
 	.setTitle('Why do I need good passwords?')
 	.setDescription('Creating a strong and secure password can reduce the risk of cybercriminals guessing your password and accessing sensitive data. Compromised passwords caused 80% of all data breaches in 2019.\n')
 	.addFields(
-		{ name: '/password', value: 'Our passord generator creates passwords that would take over **3 qintillion years** for a home computer to crack.' },
+		{ name: '/password', value: 'Our passord generator creates passwords that would take around **3 sextillion years** for a home computer to crack.' },
 	)
 	.setTimestamp()
     .setFooter({ text: 'This is our generator library: https://www.npmjs.com/package/generate-password' });
