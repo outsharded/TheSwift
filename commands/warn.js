@@ -2,6 +2,7 @@ const { SlashCommandBuilder, EmbedBuilder, GatewayIntentBits, PermissionsBitFiel
 const fs = require("fs");
 const mongoose = require('mongoose');
 const Warn = require('../models/WarnSchema');
+const Setting = require('../models/SettingsSchema');
 
 mongoose.set('strictQuery', true);
 mongoose.connect('mongodb://127.0.0.1:27017/warns', { useNewUrlParser: true, useUnifiedTopology: true, })
@@ -22,6 +23,8 @@ module.exports = {
 				.setRequired(false))
         .setDefaultMemberPermissions(PermissionFlagsBits.KickMembers),
 	async execute(interaction) {
+        const dm = await Setting.find({ type: 1, guildId: interaction.guild.id });
+        const dm_val = await Setting.find({ type: 2, guildId: interaction.guild.id });
         if (!interaction.member.permissions.has(PermissionsBitField.Flags.KickMembers)) {
             await interaction.reply({ content: "You are not allowed to warn members!", ephemeral: true })
         } else {
@@ -40,11 +43,22 @@ module.exports = {
         .setTitle('Sucessful warning')
         .setDescription(`Warned <@${user.id}> for **${reason}**`)
         .setTimestamp()
-        await user.send(`You have been warned in **${interaction.guild.name}** for **${reason}** by <@${interaction.member.user.id}>`)
-        await interaction.reply({ embeds: [warnEmbed]});
+        if (dm.value = 'False') {
+            await interaction.reply({ embeds: [warnEmbed]});
+        } else {
+            if (dm_val.value = '2') {
+                await user.send(`You have been warned in **${interaction.guild.name}** for **${reason}**`)
+            } else if (dm_val = '1') {
+                await user.send(`You have been warned in **${interaction.guild.name}**`)
+            } else  {
+                await user.send(`You have been warned in **${interaction.guild.name}** for **${reason}** by <@${interaction.member.user.id}>`)
+            }
+            await interaction.reply({ embeds: [warnEmbed]});
+        }
+       
     } catch (error) {
         await interaction.reply(error.message);
-        console.error(error.message)
+        console.error(error)
         console.warn(`warn command failed.`)
     }
     }
