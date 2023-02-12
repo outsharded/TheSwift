@@ -15,6 +15,7 @@ module.exports = {
 			.setTitle(`Pong! :ping_pong:`)
 			.addFields(
 				{ name: 'Roundtrip latency', value: `${sent.createdTimestamp - interaction.createdTimestamp}` },
+				{ name: 'Shard', value: `${sent.createdTimestamp - interaction.createdTimestamp}` },
 			)
 			.setTimestamp()
 		interaction.editReply({ content: '', embeds: [pinged] });

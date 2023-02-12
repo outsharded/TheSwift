@@ -39,8 +39,13 @@ module.exports = {
     await interaction.reply(`**Top result:** ${title}\n${link}`);
     console.log(`Stack command - completed`)
     } catch (error) {
-        await interaction.reply(`Common error: if 'title' is undefined, no answer was found.\n Error message: ${error.message}\n \n **If not 'title undefined', report this: https://github.com/tecdude/TheSwift**`);
+      if (error.message == `Cannot read properties of undefined (reading 'title')`) {
+        await interaction.reply("No results found.");
+    } else {
+    await interaction.reply(error.message);
+    }
         console.warn(`Stack command failed.`)
     }
+    console.log("Stack command completed")
 },
 };
