@@ -16,24 +16,34 @@ module.exports = {
                         .setDescription("The role to give them") 
                         .setRequired(true)),
 	async execute(interaction) {
+
         const role = interaction.options.getRole("role")
         const roles = await Setting.find({ type: 3, guildId: interaction.guild.id });
-        let given = false
-        roles.forEach(myFunction);
-        
-        function myFunction(value) {
-            console.log(value)
-            if (value.value == role.id) {
-                interaction.member.edit({roles: [role]})
-                let given = true
+        try {
+            
+            let wLen = roles.length;
+
+            for (let i = 0; i < wLen; i++) {
+                if (roles[i].value == role.id) {
+                    interaction.member.edit({roles: [role]})
+                }
             }
-          }
-        if (given == true) {
-            interaction.reply({ content: `You have been given ${role.name}`, ephemeral: true })
-        } else {
-            interaction.reply({ content: `You could not be given ${role.name}. If you belive you should be able to get this role, ask your admin to ensure it is available.`, ephemeral: true })
-        }
+            return;
         
+
+
+            if (interaction.member.roles.cache.has(role.id)) {
+                interaction.reply({ content: `You now have ${role}`, ephemeral: true })
+                } else {
+                interaction.reply({ content: `I couldn't give you your role. Please ask your admin to ensure I have the correct permissions, and this role is available.`, ephemeral: true })
+                }
+          
        
+
+        } catch (error) {
+            await interaction.reply({ content: `I couldn't give you your role. I got this error: ${error.message}.`, ephemeral: true })
+        }
+  
+        
 	},
 };
