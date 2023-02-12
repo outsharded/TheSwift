@@ -17,7 +17,7 @@ const helpEmbed1 = new EmbedBuilder()
 		{ name: '/security', value: 'Create passwords and decrypt/encrypt strings.' },
 		{ name: '/rps', value: 'Play rock, paper, scissors with the bot.' },
 		{ name: '/vote', value: 'Vote for the bot' },
-		{ name: '/stack', value: 'Search for your issue on StackOverflow and reurn the top post' },
+		{ name: '/stack', value: 'Search for your issue on StackOverflow and return the top post' },
 	)
 	.setFooter({ text: 'Page 1/2' })
 	.setTimestamp()
