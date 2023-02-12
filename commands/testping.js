@@ -14,8 +14,8 @@ module.exports = {
 			.setColor(0x5c95b5)
 			.setTitle(`Pong! :ping_pong:`)
 			.addFields(
-				{ name: 'Roundtrip latency', value: `${sent.createdTimestamp - interaction.createdTimestamp}` },
-				{ name: 'Shard', value: `${sent.createdTimestamp - interaction.createdTimestamp}` },
+				{ name: 'Roundtrip latency', value: `${sent.createdTimestamp - interaction.createdTimestamp}` + ' ms' },
+				{ name: 'Shard', value: `${interaction.guild.shardId}` },
 			)
 			.setTimestamp()
 		interaction.editReply({ content: '', embeds: [pinged] });
