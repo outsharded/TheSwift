@@ -18,17 +18,17 @@ module.exports = {
 	async execute(interaction) {
         const role = interaction.options.getRole("role")
         const roles = await Setting.find({ type: 3, guildId: interaction.guild.id });
-        let given = false
+
         roles.forEach(myFunction);
-        
+        this.given = false
         function myFunction(value) {
             console.log(value)
             if (value.value == role.id) {
                 interaction.member.edit({roles: [role]})
-                let given = true
+                this.given = true
             }
           }
-        if (given == true) {
+        if (this.given == true) {
             interaction.reply({ content: `You have been given ${role.name}`, ephemeral: true })
         } else {
             interaction.reply({ content: `You could not be given ${role.name}. If you belive you should be able to get this role, ask your admin to ensure it is available.`, ephemeral: true })
