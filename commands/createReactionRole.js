@@ -6,17 +6,17 @@ module.exports = {
 		.setDescription('what do you think')
         .addStringOption(option =>
             option
-                .setName("Message")
+                .setName("message")
                 .setDescription("The message to send with the role")
                 .setRequired(true)
                 .addStringOption(option =>
                     option
-                        .setName("Role")
+                        .setName("role")
                         .setDescription("The role to give them") 
                         .setRequired(true)
                         .addStringOption(option => 
                             option
-                                .setName("Emoji")
+                                .setName("emoji")
                                 .setDescription("The Reaction to give to it")
                                 .setRequired(true)
                             )   
