@@ -32,7 +32,7 @@ const helpEmbed1 = new EmbedBuilder()
 			{ name: '/removewarns', value: 'Remove a warn.' },
 			{ name: '/timeout', value: `Timeouts a user (up to 28 days)` },
 			{ name: '/purge', value: `Removes the specified number of messages from a channel` },
-			{ name: '/settings', value: `Modify settings` },
+			{ name: '/settings', value: `Modify settings for the bot` },
 		)
 		.setFooter({ text: 'Page 2/2' })
 		.setTimestamp()
