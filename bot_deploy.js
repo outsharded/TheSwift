@@ -7,8 +7,8 @@ const { clientId, token } = require('./config.json');
 
 client.commands = new Collection();
 const commandsPath = path.join(__dirname, 'commands');
-const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
-
+const commandFiles = fs.readdirSync(commandsPath)
+//.filter(file => file.endsWith('.js'));
 for (const file of commandFiles) {
 	const filePath = path.join(commandsPath, file);
 	const command = require(filePath);
@@ -21,8 +21,8 @@ client.login(token);
 client.on(Events.ClientReady, () => {
 //start deploying commands	
 const commands = [];
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-
+const commandFiles = fs.readdirSync('./commands')
+//.filter(file => file.endsWith('.js', or, '.ts'));
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
 	commands.push(command.data.toJSON());

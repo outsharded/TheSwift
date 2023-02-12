@@ -14,9 +14,8 @@ const helpEmbed1 = new EmbedBuilder()
 		{ name: '/ai', value: 'Use AI to generate text, images and code' },
 		{ name: '/info', value: 'Server info' },
 		{ name: '/ping', value: 'Check if the bot is online' },
-		{ name: '/password', value: 'Generate a unique, 20 charachter password.' },
+		{ name: '/security', value: 'Create passwords and decrypt/encrypt strings.' },
 		{ name: '/rps', value: 'Play rock, paper, scissors with the bot.' },
-		{ name: '/pingserver', value: 'Ping your server/domain from an external server.' },
 		{ name: '/vote', value: 'Vote for the bot' },
 		{ name: '/stack', value: 'Search for your issue on StackOverflow and reurn the top post' },
 	)
@@ -33,6 +32,7 @@ const helpEmbed1 = new EmbedBuilder()
 			{ name: '/removewarns', value: 'Remove a warn.' },
 			{ name: '/timeout', value: `Timeouts a user (up to 28 days)` },
 			{ name: '/purge', value: `Removes the specified number of messages from a channel` },
+			{ name: '/settings', value: `Modify settings` },
 		)
 		.setFooter({ text: 'Page 2/2' })
 		.setTimestamp()
