@@ -23,7 +23,7 @@ module.exports = {
         
         function myFunction(value) {
             console.log(value)
-            if (value[0].value == role.id) {
+            if (value.value == role.id) {
                 interaction.member.edit({roles: [role]})
                 let given = true
             }
