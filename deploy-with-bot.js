@@ -3,10 +3,11 @@ const fs = require("fs");
 const path = require("path");
 const { data } = require("./commands/testping");
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.DirectMessages] });
-const { token } = require("./config.json");
+const { clientId, token } = require('./config.json');
+
 
 client.commands = new Collection();
-const commandsPath = path.join(__dirname, 'commands');
+const commandsPath = ('./commands');
 const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
