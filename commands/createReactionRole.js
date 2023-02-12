@@ -1,30 +1,39 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, ReactionCollector,Client,GatewayIntentBits, Message, Partials } = require('discord.js');
+const mongoose = require('mongoose');
+const Setting = require('../models/SettingsSchema');
+
+mongoose.set('strictQuery', true);
+mongoose.connect('mongodb://127.0.0.1:27017/warns', { useNewUrlParser: true, useUnifiedTopology: true, })
+
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('createreactionrole')
-		.setDescription('what do you think')
-        .addStringOption(option =>
-            option
-                .setName("Message")
-                .setDescription("The message to send with the role")
-                .setRequired(true)
-                .addStringOption(option =>
+		.setName('role')
+		.setDescription('Get a role.')
+                .addRoleOption(option =>
                     option
-                        .setName("Role")
+                        .setName("role")
                         .setDescription("The role to give them") 
-                        .setRequired(true)
-                        .addStringOption(option => 
-                            option
-                                .setName("Emoji")
-                                .setDescription("The Reaction to give to it")
-                                .setRequired(true)
-                            )   
-                    )
-            ),
+                        .setRequired(true)),
 	async execute(interaction) {
-        const msg = interaction.channel.send(interaction.options.getString("Message"));
-        msg.react(interaction.options.getString("Emoji"));
-		console.log('Create Reaction Role command - completed')
+        const role = interaction.options.getRole("role")
+        const roles = await Setting.find({ type: 3, guildId: interaction.guild.id });
+        let given = false
+        roles.forEach(myFunction);
+        
+        function myFunction(value) {
+            console.log(value)
+            if (value[0].value == role.id) {
+                interaction.member.edit({roles: [role]})
+                let given = true
+            }
+          }
+        if (given == true) {
+            interaction.reply({ content: `You have been given ${role.name}`, ephemeral: true })
+        } else {
+            interaction.reply({ content: `You could not be given ${role.name}. If you belive you should be able to get this role, ask your admin to ensure it is available.`, ephemeral: true })
+        }
+        
+       
 	},
 };
