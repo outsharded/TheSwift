@@ -80,7 +80,7 @@ module.exports = {
                         "model": "code-cushman-001",
                         "prompt": prompt,
                         "temperature": .9,
-                        "max_tokens": 300,
+                        "max_tokens": 200,
                         "user": interaction.user.id
                     })
                     const madeEmbed = new EmbedBuilder()
