@@ -5,9 +5,6 @@ Now available for public use. If you do not want to modify the code, use [our bo
 # Settings
 Instructions for setting up the role system and cuctomising the bot are in [the wiki.](https://github.com/tecdude/TheSwift/wiki)
 
-## MongoDB
-You need a local MongoDB database named 'warns'. [Use their guide for the most up-to-date guidance.](<https://www.mongodb.com/docs/manual/installation/> "Use their guide for the most up-to-date guidance.")
-
 
 ## Installation
 Installation instructions are now in [the wiki.](https://github.com/tecdude/TheSwift/wiki)
