@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder, Client, Events, GatewayIntentBits} = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder, Client, Events, GatewayIntentBits, ModalSubmitFields} = require('discord.js');
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 const mongoose = require('mongoose');
 const Setting = require('../models/SettingsSchema');
@@ -45,23 +45,24 @@ module.exports = {
         const channelId = await Setting.find({ type: 5, guildId: interaction.guild.id });
         await interaction.showModal(modal);
 
+        const report_channel = interaction.guild.channels.cache.find(channel => channel.id === '1044305863076220970')
         await interaction.awaitModalSubmit({ time: 60_000 })
-  .then(interaction => console.log(`${interaction.customId} was submitted!`), 
-  
-
+                .then(interaction => 
+                
+                        console.log(`${interaction.customId} was submitted!`), 
                 // Get the data entered by the user
-                var summary = interaction.fields.getTextInputValue('summary');
-                const full = interaction.fields.getTextInputValue('full');
-                console.log( summary, full );
-                const report_channel = interaction.guild.channels.cache.find(channel => channel.id === '1044305863076220970')
+                        summary = await interaction.fields.getTextInputValue(`summary`),
+                        full = await interaction.fields.getTextInputValue('full'),
+                        console.log( summary, full ),
+                        
 
-                const whyEmbed = new EmbedBuilder()
+                whyEmbed = new EmbedBuilder()
                 .setColor(0x5c95b5)
                 .setTitle(`Report from <@${interaction.user.id}>: ${summary}`)
                 .setDescription(full)
-                .setTimestamp()
+                .setTimestamp(),
         
-                report_channel.channel.send({ embeds: [whyEmbed] });
+                report_channel.channel.send({ embeds: [whyEmbed] }),
   )
 
         console.log('report command - completed')
