@@ -7,6 +7,6 @@ You need a local MongoDB database named 'warns'. [Use their guide for the most u
 
 
 ## Installation
-Installation instructions are now in [the wiki.]()
+Installation instructions are now in [the wiki.](https://github.com/tecdude/TheSwift/wiki)
 
 #### Thanks to memer#0001 for the command loader/general code structure
