@@ -77,12 +77,15 @@ module.exports = {
             const warnsGuild = await Warn.find({ guildId: interaction.guild.id });
             console.log(warnsGuild)
             let wLen = warnsGuild.length;
-    
+            
+        if (wLen <= 10) {
             let text = " ";
             for (let i = 0; i < wLen; i++) {
               text += '<@' + warnsGuild[i].userId + '> for ' + warnsGuild[i].reason + '\n';
             }
-    
+        } else {
+            var pages = (wLen/10) 
+        }
             const warnsEmbed = new EmbedBuilder()
                 .setColor(0x5c95b5)
                 .setTitle('Warnings in this server:')

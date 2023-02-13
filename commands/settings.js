@@ -10,7 +10,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('settings')
 		.setDescription('Change the settings for the bot.')
-        .addSubcommandGroup(subcommand =>
+.addSubcommandGroup(subcommand =>
             subcommand
                 .setName('warn_dm')
                 .setDescription('Settings related to users being dmed after being warned.')
@@ -37,10 +37,10 @@ module.exports = {
                             { name: 'Server and Reason', value: 2 },
                             { name: 'Server, Reason and Moderator (default)', value: 3 },
                         ))))
-                        .addSubcommandGroup(subcommand =>
-                            subcommand
-                                .setName('roles')
-                                .setDescription('Settings related to users being able to get roles.')
+.addSubcommandGroup(subcommand =>
+                                subcommand
+                                    .setName('roles')
+                                    .setDescription('Settings related to users being able to get roles.')
                         .addSubcommand(subcommand =>
                             subcommand
                                 .setName('user_role')
@@ -59,6 +59,28 @@ module.exports = {
                                                         .setName('user_role')
                                                         .setDescription('Role to remove.')
                                                         .setRequired(true))))
+.addSubcommandGroup(subcommand =>
+                                                            subcommand
+                                                                .setName('links')
+                                                                .setDescription('Voting links for this server.')
+                                                    .addSubcommand(subcommand =>
+                                                        subcommand
+                                                            .setName('link')
+                                                            .setDescription('Add a voting link')
+                                                            .addStringOption(option =>
+                                                                option
+                                                                    .setName('link')
+                                                                    .setDescription('Use a fully formed URL e.g. (https://tec-kids.co.uk)')
+                                                                    .setRequired(true)))
+                                                                .addSubcommand(subcommand =>
+                                                                        subcommand
+                                                                            .setName('rmv_link')
+                                                                            .setDescription('Remove a voting link')
+                                                                            .addStringOption(option =>
+                                                                                option
+                                                                                    .setName('link')
+                                                                                    .setDescription('Use a fully formed URL e.g. (https://tec-kids.co.uk)')
+                                                                                    .setRequired(true))))
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
 	async execute(interaction) {
         if (!interaction.member.permissions.has(PermissionsBitField.Flags.ManageGuild)) {
@@ -95,6 +117,9 @@ module.exports = {
             .setDescription(`Set warning_dm_level to ${interaction.options.getInteger('dm_level')}`)
             .setTimestamp()
         await interaction.reply({ embeds: [settingEmbed], ephemeral: true });
+
+
+
         } else if (interaction.options.getSubcommand() === "rmv_user_role") {
             const role = interaction.options.getRole('user_role')
             await Setting.deleteMany({ type: 3, guidldId: interaction.guild.id, value: role.id });
@@ -104,6 +129,7 @@ module.exports = {
                 .setDescription(`Removed user user role ${role.name}`)
                 .setTimestamp()
             await interaction.reply({ embeds: [settingEmbed], ephemeral: true });
+
 
         } else if (interaction.options.getSubcommand() === "user_role") {
             const role = interaction.options.getRole('user_role')
@@ -117,6 +143,32 @@ module.exports = {
                 .setColor(0x5c95b5)
                 .setTitle('Sucessful setting')
                 .setDescription(`Added user role ${role.name}`)
+                .setTimestamp()
+            await interaction.reply({ embeds: [settingEmbed], ephemeral: true });
+
+        } else if (interaction.options.getSubcommand() === "link") {
+            const link = interaction.options.getString('link')
+            const newSetting = new Setting({ 
+                type: 4,
+                value: link,
+                guildId: interaction.guild.id
+            });;
+            await newSetting.save();
+            const settingEmbed = new EmbedBuilder()
+                .setColor(0x5c95b5)
+                .setTitle('Sucessful setting')
+                .setDescription(`Added link ${link}`)
+                .setTimestamp()
+            await interaction.reply({ embeds: [settingEmbed], ephemeral: true });
+
+
+        } else if (interaction.options.getSubcommand() === "rmv_link") {
+            const link = interaction.options.getString('link')
+            await Setting.deleteMany({ type: 4, guidldId: interaction.guild.id, value: link });
+            const settingEmbed = new EmbedBuilder()
+                .setColor(0x5c95b5)
+                .setTitle('Sucessful setting')
+                .setDescription(`Removed link ${link}`)
                 .setTimestamp()
             await interaction.reply({ embeds: [settingEmbed], ephemeral: true });
 
