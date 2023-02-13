@@ -75,7 +75,7 @@ module.exports = {
 if (given == true) {
      interaction.reply({ content: `${role} has been removed.`, ephemeral: true })
 } else {
-    interaction.reply({ content: `Your admin has not made ${role} available. If you believe you should be able to remove, please ask them to add it in settings.`, ephemeral: true })
+    interaction.reply({ content: `Your admin has not made ${role} available. If you believe you should be able to remove it, please ask them to add it in settings.`, ephemeral: true })
 }
       
     } catch (error) {

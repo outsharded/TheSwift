@@ -17,3 +17,4 @@ const settingSchema = new Schema({
   // 2: Warns DM level: Store as integer (1,2,3)
   // 3: User Role: Store as ID
   // 4: Voting links: URL
+  // 5: Report channel: as ID
