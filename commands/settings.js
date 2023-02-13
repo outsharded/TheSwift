@@ -10,6 +10,10 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('settings')
 		.setDescription('Change the settings for the bot.')
+        .addSubcommandGroup(subcommand =>
+            subcommand
+                .setName('warn_dm')
+                .setDescription('Settings related to users being dmed after being warned.')
         .addSubcommand(subcommand =>
             subcommand
                 .setName('warning_dm')
@@ -32,7 +36,29 @@ module.exports = {
                             { name: 'Server', value: 1 },
                             { name: 'Server and Reason', value: 2 },
                             { name: 'Server, Reason and Moderator (default)', value: 3 },
-                        )))
+                        ))))
+                        .addSubcommandGroup(subcommand =>
+                            subcommand
+                                .setName('roles')
+                                .setDescription('Settings related to users being able to get roles.')
+                        .addSubcommand(subcommand =>
+                            subcommand
+                                .setName('user_role')
+                                .setDescription('A role that any user can get via /role')
+                                .addRoleOption(option =>
+                                    option
+                                        .setName('user_role')
+                                        .setDescription('A role that anyone can get.')
+                                        .setRequired(true)))
+                                        .addSubcommand(subcommand =>
+                                            subcommand
+                                                .setName('rmv_user_role')
+                                                .setDescription('Remove roles that any user can get via /role')
+                                                .addRoleOption(option =>
+                                                    option
+                                                        .setName('user_role')
+                                                        .setDescription('Role to remove.')
+                                                        .setRequired(true))))
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
 	async execute(interaction) {
         if (!interaction.member.permissions.has(PermissionsBitField.Flags.ManageGuild)) {
@@ -69,6 +95,31 @@ module.exports = {
             .setDescription(`Set warning_dm_level to ${interaction.options.getInteger('dm_level')}`)
             .setTimestamp()
         await interaction.reply({ embeds: [settingEmbed], ephemeral: true });
+        } else if (interaction.options.getSubcommand() === "rmv_user_role") {
+            const role = interaction.options.getRole('user_role')
+            await Setting.deleteMany({ type: 3, guidldId: interaction.guild.id, value: role.id });
+            const settingEmbed = new EmbedBuilder()
+                .setColor(0x5c95b5)
+                .setTitle('Sucessful setting')
+                .setDescription(`Removed user user role ${role.name}`)
+                .setTimestamp()
+            await interaction.reply({ embeds: [settingEmbed], ephemeral: true });
+
+        } else if (interaction.options.getSubcommand() === "user_role") {
+            const role = interaction.options.getRole('user_role')
+            const newSetting = new Setting({ 
+                type: 3,
+                value: role.id,
+                guildId: interaction.guild.id
+            });
+            await newSetting.save();
+            const settingEmbed = new EmbedBuilder()
+                .setColor(0x5c95b5)
+                .setTitle('Sucessful setting')
+                .setDescription(`Added user role ${role.name}`)
+                .setTimestamp()
+            await interaction.reply({ embeds: [settingEmbed], ephemeral: true });
+
         }
     } catch (error) {
         await interaction.reply(error.message);
@@ -80,3 +131,5 @@ module.exports = {
         },
 		
 	}
+
+   

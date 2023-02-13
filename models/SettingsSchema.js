@@ -15,3 +15,4 @@ const settingSchema = new Schema({
 
   // 1: Warns DM: Store as boolean (true/false)
   // 2: Warns DM level: Store as integer (1,2,3)
+  // 3: User Role: Store as ID
