@@ -2,6 +2,9 @@
 Bot built for the [Swift Den Discord server](https://discord.gg/DzpaehyZyv)
 Now available for public use. If you do not want to modify the code, use [our bot](https://discord.com/api/oauth2/authorize?client_id=1045760873316229193&permissions=274878179328&scope=bot%20applications.commands)
 
+# Settings
+Instructions for setting up the role system and cuctomising the bot are in [the wiki.](https://github.com/tecdude/TheSwift/wiki)
+
 ## MongoDB
 You need a local MongoDB database named 'warns'. [Use their guide for the most up-to-date guidance.](<https://www.mongodb.com/docs/manual/installation/> "Use their guide for the most up-to-date guidance.")
 
