@@ -7,21 +7,6 @@ You need a local MongoDB database named 'warns'. [Use their guide for the most u
 
 
 ## Installation
-node.js and npm are required.
-
-```
-git clone https://github.com/tecdude/TheSwift.git
-cd TheSwift
-npm install
-nano config.json
-```
-### config.json structure:
-
-`{
-"token": "",
-"clientId": "",
-"guildId": "",
-"OPENAI_API_KEY": ""
-}`
+Installation instructions are now in [the wiki.]()
 
 #### Thanks to memer#0001 for the command loader/general code structure
