@@ -42,29 +42,30 @@ module.exports = {
 
 
 
-        const channelId = await Setting.find({ type: 5, guildId: interaction.guild.id });
+        const channel = await Setting.find({ type: 5, guildId: interaction.guild.id });
+        if (channel.length == 0) {
+          await interaction.reply('Your admin has not set a report channel. Please ask them to do so.')
+        } else {
         await interaction.showModal(modal);
-
-        const report_channel = interaction.guild.channels.cache.find(channel => channel.id === '1044305863076220970')
-        await interaction.awaitModalSubmit({ time: 60_000 })
-                .then(interaction => 
+        const channelId = channel[0].value
+        const report_channel = await interaction.guild.channels.cache.find(channel => channel.id === channelId);
+        const modalInteraction = await interaction.awaitModalSubmit({ time: 60_000 })
                 
-                        console.log(`${interaction.customId} was submitted!`), 
+                        console.log(`${modalInteraction.customId} was submitted!`)
                 // Get the data entered by the user
-                        summary = await interaction.fields.getTextInputValue(`summary`),
-                        full = await interaction.fields.getTextInputValue('full'),
-                        console.log( summary, full ),
-                        
-
-                whyEmbed = new EmbedBuilder()
+                        const summary = await modalInteraction.fields.getTextInputValue(`summary`)
+                        const full = await modalInteraction.fields.getTextInputValue('full')
+                
+                const whyEmbed = new EmbedBuilder()
                 .setColor(0x5c95b5)
-                .setTitle(`Report from <@${interaction.user.id}>: ${summary}`)
+                .setTitle(`Report from ${interaction.user.id} (${interaction.user.username}): ${summary}`)
                 .setDescription(full)
-                .setTimestamp(),
+                .setTimestamp()
         
-                report_channel.channel.send({ embeds: [whyEmbed] }),
-  )
-
+                await report_channel.send({ embeds: [whyEmbed] }),
+                await modalInteraction.reply({ content: 'Thanks for your report.', ephemeral: true })
+  
+        }
         console.log('report command - completed')
 }
 

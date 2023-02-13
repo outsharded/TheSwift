@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, GatewayIntentBits, PermissionsBitField, PermissionFlagsBits, Client  } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, GatewayIntentBits, PermissionsBitField, PermissionFlagsBits, Client, ChannelType } = require('discord.js');
 const fs = require("fs");
 const mongoose = require('mongoose');
 const Setting = require('../models/SettingsSchema');
@@ -81,6 +81,21 @@ module.exports = {
                                                                                     .setName('link')
                                                                                     .setDescription('Use a fully formed URL e.g. (https://tec-kids.co.uk)')
                                                                                     .setRequired(true))))
+.addSubcommandGroup(subcommand =>
+                                                                                        subcommand
+                                                                                            .setName('report')
+                                                                                            .setDescription('Settings related to users being dmed after being warned.')
+                                                                                    .addSubcommand(subcommand =>
+                                                                                        subcommand
+                                                                                            .setName('report_channel')
+                                                                                            .setDescription('Channel to send reports to.')
+                                                                                            .addChannelOption(option =>
+                                                                                                option
+                                                                                                    .setName('channel')
+                                                                                                    .setDescription('Channel to send report to.')
+                                                                                                    .setRequired(true)
+                                                                                                    .addChannelTypes(ChannelType.GuildText)))
+                                                                                                    )
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
 	async execute(interaction) {
         if (!interaction.member.permissions.has(PermissionsBitField.Flags.ManageGuild)) {
@@ -172,7 +187,25 @@ module.exports = {
                 .setTimestamp()
             await interaction.reply({ embeds: [settingEmbed], ephemeral: true });
 
-        }
+        } else if (interaction.options.getSubcommand() === "report_channel") {
+            await Setting.deleteMany({ guidldId: interaction.guild.id, type: 5 });
+            const channel = await interaction.options.getChannel('channel')
+            const newSetting = new Setting({ 
+                type: 5,
+                value: channel.id,
+                guildId: interaction.guild.id
+            });
+            await newSetting.save();
+            const settingEmbed = new EmbedBuilder()
+                .setColor(0x5c95b5)
+                .setTitle('Sucessful setting')
+                .setDescription(`Set report channel to to ${interaction.options.getChannel('channel')}`)
+                .setTimestamp()
+            await interaction.reply({ embeds: [settingEmbed], ephemeral: true });
+    
+    
+    
+            } 
     } catch (error) {
         await interaction.reply(error.message);
         console.error(error.message)
