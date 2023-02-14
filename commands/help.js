@@ -7,7 +7,7 @@ const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, Butt
 //embeds with ccommands
 const helpEmbed1 = new EmbedBuilder()
 	.setColor(0x5c95b5)
-	.setTitle('User')
+	.setTitle('Page 1')
 	.setDescription('Supported commands')
 	.addFields(
 		{ name: '/help', value: 'Get a command list' },
@@ -27,7 +27,7 @@ const helpEmbed1 = new EmbedBuilder()
 
 	const helpEmbed2 = new EmbedBuilder()
 	.setColor(0x5c95b5)
-		.setTitle('Admin/Moderator')
+		.setTitle('Page 2')
 		.setDescription('Supported commands')
 		.addFields(
 			{ name: '/warn', value: 'Warns a user.' },
@@ -37,7 +37,7 @@ const helpEmbed1 = new EmbedBuilder()
 			{ name: '/purge', value: `Removes the specified number of messages from a channel` },
 			{ name: '/settings', value: `Modify settings for the bot` },
 		)
-		.setFooter({ text: 'Page 3/3' })
+		.setFooter({ text: 'Page 2/2' })
 		.setTimestamp()
 
 
@@ -59,13 +59,13 @@ const inactiverow = new ActionRowBuilder()
 .addComponents(
 	new ButtonBuilder()
 		.setCustomId('page1')
-		.setLabel('Most Used')
+		.setLabel('<<')
 		.setStyle(ButtonStyle.Primary)
 		.setDisabled(true))
 .addComponents(
 	new ButtonBuilder()
 		.setCustomId('page2')
-		.setLabel('Admin/Moderator')
+		.setLabel('>>')
 		.setStyle(ButtonStyle.Primary)
 		.setDisabled(true)
 );
@@ -87,28 +87,20 @@ module.exports = {
 				)),
 	async execute(interaction) {
 		const page = await interaction.options.getInteger('page')
-		if (page == '1') {
+		if (page == 1) {
 		await interaction.reply({ embeds: [helpEmbed1], components: [row] })
-		} else if (page == '2') {
+		} else if (page == 2) {
 		await interaction.reply({ embeds: [helpEmbed2], components: [row] })
 		}
 		const filter = i => i.user.id === interaction.user.id;
-		let text1 = 'helpEmbed';
 		const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
 		
 		collector.on('collect', async i => {
 			if (i.customId === '1') {
-				var page = await interaction.options.getInteger('page')
-				var page = await page - 1
-				const current = 'helpEmbed' + page
-				console.log(current)
-				await i.update({ embeds: [{current}], components: [row] });
+				await i.update({ embeds: [helpEmbed1], components: [row] });
 			} else if (i.customId === '2') {
-				var page = await interaction.options.getInteger('page')
-				var page = await page + 1
-				const current = 'helpEmbed' + page
-				console.log(current)
-				await i.update({ embeds: [{current}], components: [row] });
+
+				await i.update({ embeds: [helpEmbed2], components: [row] });
 			}
 		});
 
