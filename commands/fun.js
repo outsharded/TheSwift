@@ -31,6 +31,19 @@ module.exports = {
                     .setName('word')
                     .setDescription("The word to find")
                     .setRequired(true)))
+            .addSubcommand(subcommand =>
+                        subcommand
+                        .setName('rps')
+                        .setDescription('Play Rock, Paper, Scissors with the bot.')
+                        .addStringOption(option =>
+                            option.setName('choice')
+                                .setDescription('Rock, paper or scissors?')
+                                .setRequired(true)
+                                .addChoices(
+                                    { name: 'Rock', value: 'rock' },
+                                    { name: 'Paper', value: 'paper' },
+                                    { name: 'Scissors', value: 'scissors' },
+                                )))         
         .addSubcommand(subcommand =>
                         subcommand
                         .setName('weather')
@@ -122,6 +135,47 @@ const madeEmbed = new EmbedBuilder()
 }
 
         })
+    } else if (interaction.options.getSubcommand() === "rps") {
+        const userChoice = interaction.options.getString("choice")
+
+        // Generate a random number to determine the bot's choice
+        const botChoice = Math.floor(Math.random() * 3);
+    
+        // Define the possible choices as an array
+        const choices = ['rock', 'paper', 'scissors'];
+    
+        // Use the bot's random number to get its choice
+        const botChoiceString = choices[botChoice];
+    
+        // Determine the winner
+        let winner;
+        if ((userChoice === 'rock' && botChoiceString === 'scissors') ||
+            (userChoice === 'paper' && botChoiceString === 'rock') ||
+            (userChoice === 'scissors' && botChoiceString === 'paper')) {
+          winner = 'user';
+        } else if (userChoice === botChoiceString) {
+          winner = 'tie';
+        } else {
+          winner = 'bot';
+        }
+    
+        // Send the result back to the user
+        let result;
+        if (winner === 'user') {
+          result = `You win! Your **${userChoice}** beats my **${botChoiceString}**.`;
+        } else if (winner === 'tie') {
+          result = `It's a tie! We both chose **${userChoice}**.`;
+        } else {
+          result = `You lose! My **${botChoiceString}** beats your **${userChoice}**.`;
+        }
+        const rps = new EmbedBuilder()
+        .setColor(colour)
+        .setTitle('Rock :rock:, Paper :newspaper:, Scissors :scissors:')
+        .setDescription(result)
+        .setTimestamp()
+        await interaction.reply({ embeds: [rps] });
+        console.log('RPS command - completed')
+
     }
 console.log('fun command - completed')
     }
