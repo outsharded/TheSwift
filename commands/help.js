@@ -1,12 +1,12 @@
 const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, Events } = require('discord.js');
-
+const { colour } = require("../settings.json");
 
 
 
 
 //embeds with ccommands
 const helpEmbed1 = new EmbedBuilder()
-	.setColor(0x5c95b5)
+	.setColor(colour)
 	.setTitle('Page 1')
 	.setDescription('Supported commands')
 	.addFields(
@@ -26,7 +26,7 @@ const helpEmbed1 = new EmbedBuilder()
 	.setTimestamp()
 
 	const helpEmbed2 = new EmbedBuilder()
-	.setColor(0x5c95b5)
+	.setColor(colour)
 		.setTitle('Page 2')
 		.setDescription('Supported commands')
 		.addFields(

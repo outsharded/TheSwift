@@ -2,7 +2,7 @@ const { SlashCommandBuilder, EmbedBuilder, IntegrationExpireBehavior, Permission
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
-
+const { colour } = require("../settings.json");
 const Warn = require('../models/WarnSchema');
 mongoose.set('strictQuery', true);
 mongoose.connect('mongodb://127.0.0.1:27017/warns', { useNewUrlParser: true, useUnifiedTopology: true, })
@@ -41,7 +41,7 @@ module.exports = {
         }
 
         const warnsEmbed = new EmbedBuilder()
-            .setColor(0x5c95b5)
+            .setColor(colour)
             .setTitle('Warnings in this server:')
             .setDescription(text)
             .setTimestamp()    
@@ -62,7 +62,7 @@ module.exports = {
         }
 
         const warnsEmbed = new EmbedBuilder()
-            .setColor(0x5c95b5)
+            .setColor(colour)
             .setTitle(`Warnings for ${user.username}`)
             .setDescription(text)
             .setTimestamp()    
@@ -87,7 +87,7 @@ module.exports = {
             var pages = (wLen/10) 
         }
             const warnsEmbed = new EmbedBuilder()
-                .setColor(0x5c95b5)
+                .setColor(colour)
                 .setTitle('Warnings in this server:')
                 .setDescription(text)
                 .setTimestamp()    

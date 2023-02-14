@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-
+const { colour } = require("../settings.json");
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('ping')
@@ -11,7 +11,7 @@ module.exports = {
 		sent
 		//then update message with ping
 		const pinged = new EmbedBuilder()
-			.setColor(0x5c95b5)
+			.setColor(colour)
 			.setTitle(`Pong! :ping_pong:`)
 			.addFields(
 				{ name: 'Roundtrip latency', value: `${sent.createdTimestamp - interaction.createdTimestamp}` + ' ms' },

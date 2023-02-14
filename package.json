@@ -1,6 +1,6 @@
 {
   "name": "the-swift",
-  "version": "0.15.0",
+  "version": "0.16.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -16,6 +16,7 @@
     "generate-password": "^1.7.0",
     "mongoose": "^6.9.1",
     "openai": "^3.1.0",
-    "ping": "^0.4.2"
+    "ping": "^0.4.2",
+    "undici": "^5.19.1"
   }
 }
