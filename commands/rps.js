@@ -1,6 +1,6 @@
 //const Discord = require('discord.js');
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-
+const { colour } = require("../settings.json");
 // Create a new Discord client
 //const client = new Discord.Client();
 
@@ -53,7 +53,7 @@ async execute(interaction) {
       result = `You lose! My **${botChoiceString}** beats your **${userChoice}**.`;
     }
     const rps = new EmbedBuilder()
-    .setColor(0x5c95b5)
+    .setColor(colour)
     .setTitle('Rock :rock:, Paper :newspaper:, Scissors :scissors:')
     .setDescription(result)
     .setTimestamp()

@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-
+const { colour } = require("../settings.json");
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('info')
@@ -8,7 +8,7 @@ module.exports = {
 		//unix time, put into seconds to match discord timestamp
 		const timestamp = Math.floor(Date.now() / 1000)
 		const pinged = new EmbedBuilder()
-		.setColor(0x5c95b5)
+		.setColor(colour)
 		.setTitle(`${interaction.guild.name}`)
 		.addFields(
 			{ name: 'Member count', value: `${interaction.guild.memberCount}` },

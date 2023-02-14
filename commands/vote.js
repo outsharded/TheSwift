@@ -1,8 +1,8 @@
 const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
-
+const { colour } = require("../settings.json");
 //define embed
 const voteEmbed = new EmbedBuilder()
-	.setColor(0x5c95b5)
+	.setColor(colour)
 	.setTitle('Vote')
 	.setDescription('Thanks for supporting the bot!')
 	.setTimestamp()

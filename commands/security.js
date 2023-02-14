@@ -1,7 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 var CryptoJS = require("crypto-js");
 var generator = require('generate-password');
-
+const { colour } = require("../settings.json");
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('security')
@@ -44,7 +44,7 @@ module.exports = {
 
     if (interaction.options.getSubcommand() === "password") {
     const whyEmbed = new EmbedBuilder()
-            .setColor(0x5c95b5)
+            .setColor(colour)
             .setTitle('Why do I need good passwords?')
             .setDescription('Creating a strong and secure password can reduce the risk of cybercriminals guessing your password and accessing sensitive data. Compromised passwords caused 80% of all data breaches in 2019.\n')
             .addFields(

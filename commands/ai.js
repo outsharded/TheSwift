@@ -5,6 +5,7 @@ const configuration = new Configuration({
     apiKey: OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
+const { colour } = require("../settings.json");
 //const bannedIDs = []
 
 //was woman command. got dewomanised. bleeding heart liberals, ey?
@@ -52,7 +53,7 @@ module.exports = {
 					"user": interaction.user.id
 			})
 			const madeEmbed = new EmbedBuilder()
-			.setColor(0x5c95b5)
+			.setColor(colour)
 			.setTitle(`${prompt}:`)
 			.setDescription(completion.data.choices[0].text)
 			.setTimestamp()
@@ -69,7 +70,7 @@ module.exports = {
 
     	} else if (interaction.options.getSubcommand() === "code") {
             const makingEmbed = new EmbedBuilder()
-                .setColor(0x5c95b5)
+                .setColor(colour)
                 .setTitle(`Generating: ${prompt}`)
                 .setTimestamp()
                 .setFooter({ text: `We use OpenAI's Codex engine to generate code!` });      
@@ -84,7 +85,7 @@ module.exports = {
                         "user": interaction.user.id
                     })
                     const madeEmbed = new EmbedBuilder()
-                    .setColor(0x5c95b5)
+                    .setColor(colour)
                     .setTitle(`I generated: ${prompt}`)
                     .setDescription(completion.data.choices[0].text)
                     .setTimestamp()
@@ -99,7 +100,7 @@ module.exports = {
                 }
         } else if (interaction.options.getSubcommand() === "image") {
             const makingEmbed = new EmbedBuilder()
-			.setColor(0x5c95b5)
+			.setColor(colour)
 				.setTitle('Generating Image')
 			.setDescription(prompt)
 			.setTimestamp()
@@ -114,7 +115,7 @@ module.exports = {
 					user: interaction.user.id
         	});
 		const madeEmbed = new EmbedBuilder()
-			.setColor(0x5c95b5)
+			.setColor(colour)
 			.setTitle('Generated Image')
 			.setDescription(prompt)
 			.setImage(response.data.data[0].url)
@@ -130,7 +131,7 @@ module.exports = {
 		console.warn(`Image command failed.`)
 	}
         } else {
-            interaction.reply("Error. Did you specify tex,code or image?")
+            interaction.reply("Error. Did you specify text ,code or image?")
         }
     	},
 };

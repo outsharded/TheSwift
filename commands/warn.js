@@ -3,7 +3,7 @@ const fs = require("fs");
 const mongoose = require('mongoose');
 const Warn = require('../models/WarnSchema');
 const Setting = require('../models/SettingsSchema');
-
+const { colour } = require("../settings.json");
 mongoose.set('strictQuery', true);
 mongoose.connect('mongodb://127.0.0.1:27017/warns', { useNewUrlParser: true, useUnifiedTopology: true, })
 
@@ -41,7 +41,7 @@ module.exports = {
         try {
         await newWarn.save();
         const warnEmbed = new EmbedBuilder()
-        .setColor(0x5c95b5)
+        .setColor(colour)
         .setTitle('Sucessful warning')
         .setDescription(`Warned <@${user.id}> for **${reason}**`)
         .setTimestamp()

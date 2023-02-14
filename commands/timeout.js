@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, PermissionsBitField, PermissionFlagsBits, GatewayIntentBits, Client, Partials, EmbedBuilder } = require('discord.js');
 const client = new Client({ intents: [GatewayIntentBits.Guilds], partials: [Partials.GuildMember, Partials.User] });
 //, GatewayIntentBits.GuildMembers
+const { colour } = require("../settings.json");
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('timeout')
@@ -32,7 +33,7 @@ module.exports = {
         try {
             await guildUser.timeout( days * 1440 * 60 * 1000, reason)
             const toEmb = new EmbedBuilder()
-                .setColor(0x5c95b5)
+                .setColor(colour)
                 .setTitle('Sucessful timeout')
                 .setDescription(`Timed out <@${user.id}> for **${reason}** for **${days} days.**`)
                 .setTimestamp()  
