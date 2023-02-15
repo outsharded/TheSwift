@@ -1,6 +1,6 @@
 # The Swift
 Bot built for the [Swift Den Discord server](https://discord.gg/DzpaehyZyv)
-Now available for public use. If you do not want to modify the code, use [our bot](https://discord.com/api/oauth2/authorize?client_id=1045760873316229193&permissions=274878179328&scope=bot%20applications.commands)
+Now available for public use. If you do not want to modify the code, use [our bot](https://discord.com/api/oauth2/authorize?client_id=1045760873316229193&permissions=269224960&scope=applications.commands%20bot)
 
 # Settings
 Instructions for setting up the role system and cuctomising the bot are in [the wiki.](https://github.com/tecdude/TheSwift/wiki)
