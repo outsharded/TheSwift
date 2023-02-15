@@ -35,26 +35,26 @@ module.exports = {
         try {
 
             let wLen = roles.length;
-            
+                            var given = false;
             for (let i = 0; i < wLen; i++) {
-                var given = false;
                 if (roles[i].value == role.id) {
                     await interaction.member.roles.add(role)
                     var given = true;
+                    interaction.reply({ content: `You now have ${role}`, ephemeral: true })
+                    return;
                 }
         }
 
-    if (given == true) {
-         interaction.reply({ content: `You now have ${role}`, ephemeral: true })
-    } else {
-        interaction.reply({ content: `Your admin has not made ${role} available. If you believe you should be able to get it, please ask them to add it.`, ephemeral: true })
-    }
+
+        await interaction.reply({ content: `Your admin has not made ${role} available. If you believe you should be able to get it, please ask them to add it.`, ephemeral: true })
+    
           
         } catch (error) {
             if (error.message == 'Missing Permissions') {
             interaction.reply({ content: `I do not have the permission to give you this role. Please ask your admin to ensure I have the correct permissions.`, ephemeral: true })
         } else {
             await interaction.reply({ content: `I couldn't give you your role. I got this error: ${error.message}.`, ephemeral: true })
+            console.warn(error)
         }
     }
 } else if (interaction.options.getSubcommand() === "remove") {
@@ -63,20 +63,19 @@ module.exports = {
     try {
 
         let wLen = roles.length;
-        
+        var given = false;
+
         for (let i = 0; i < wLen; i++) {
-            var given = false;
             if (roles[i].value == role.id) {
                 await interaction.member.roles.remove(role)
                 var given = true;
+                interaction.reply({ content: `${role} has been removed.`, ephemeral: true })
+                return;
             }
     }
 
-if (given == true) {
-     interaction.reply({ content: `${role} has been removed.`, ephemeral: true })
-} else {
-    interaction.reply({ content: `Your admin has not made ${role} available. If you believe you should be able to remove it, please ask them to add it in settings.`, ephemeral: true })
-}
+    await interaction.reply({ content: `Your admin has not made ${role} available. If you believe you should be able to remove it, please ask them to add it in settings.`, ephemeral: true })
+
       
     } catch (error) {
         if (error.message == 'Missing Permissions') {
