@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, ReactionCollector,Client,GatewayIntentBits, Message, Partials } = require('discord.js');
+const { SlashCommandBuilder } = require('discord.js');
 const mongoose = require('mongoose');
 const Setting = require('../models/SettingsSchema');
 
@@ -39,7 +39,7 @@ module.exports = {
             for (let i = 0; i < wLen; i++) {
                 var given = false;
                 if (roles[i].value == role.id) {
-                    await interaction.member.edit({roles: [role]})
+                    await interaction.member.roles.add(role)
                     var given = true;
                 }
         }
