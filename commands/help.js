@@ -8,7 +8,7 @@ const { colour } = require("../settings.json");
 const helpEmbed1 = new EmbedBuilder()
 	.setColor(colour)
 	.setTitle('Page 1')
-	.setDescription('Supported commands')
+	.setDescription('For full commands list, go on the website.')
 	.addFields(
 		{ name: '/help', value: 'Get a command list' },
 		{ name: '/ai', value: 'Use AI to generate text, images and code' },
@@ -28,7 +28,7 @@ const helpEmbed1 = new EmbedBuilder()
 	const helpEmbed2 = new EmbedBuilder()
 	.setColor(colour)
 		.setTitle('Page 2')
-		.setDescription('Supported commands')
+		.setDescription('For full commands list, go on the website.')
 		.addFields(
 			{ name: '/warn', value: 'Warns a user.' },
 			{ name: '/warns', value: 'Gets all warns in the server of for a user.' },
@@ -53,7 +53,12 @@ const row = new ActionRowBuilder()
 		.setCustomId('2')
 		.setLabel('>>')
 		.setStyle(ButtonStyle.Primary),
-);
+)
+.addComponents(
+	new ButtonBuilder()
+		.setURL('https://tec-kids.co.uk/pages/commands.html')
+		.setLabel('Full command list')
+		.setStyle(ButtonStyle.Link));
 
 const inactiverow = new ActionRowBuilder()
 .addComponents(
