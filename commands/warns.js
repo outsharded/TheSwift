@@ -35,17 +35,20 @@ module.exports = {
         console.log(warnsGuild)
         let wLen = warnsGuild.length;
 
-        let text = " ";
-        for (let i = 0; i < wLen; i++) {
-          text += '<@' + warnsGuild[i].userId + '> for ' + warnsGuild[i].reason + '\n';
-        }
 
-        const warnsEmbed = new EmbedBuilder()
+            let text = " ";
+            for (let i = 0; i < wLen; i++) {
+              text += warnsGuild[i].userId + ' for ' + warnsGuild[i].reason + '\n';
+            }
+            const warnsEmbed = new EmbedBuilder()
             .setColor(colour)
             .setTitle('Warnings in this server:')
             .setDescription(text)
             .setTimestamp()    
-        await interaction.reply({ embeds: [warnsEmbed]});
+            interaction.reply({ embeds: [warnsEmbed]});
+        
+
+
     } catch (error) {
         await interaction.reply(error.message);
         console.warn(`warns command failed.`)
@@ -54,7 +57,6 @@ module.exports = {
         const user = interaction.options.getUser("user")
         try {
         const warnsUser = await Warn.find({ guildId: interaction.guild.id, userId: user.id });
-        console.log(warnsUser)
         let wLen = warnsUser.length;
         let text = "";
         for (let i = 0; i < wLen; i++) {
@@ -72,31 +74,7 @@ module.exports = {
             await interaction.reply(error.message);
             console.warn(`userwarns command failed.`)
         }
-    } else {
-        try {
-            const warnsGuild = await Warn.find({ guildId: interaction.guild.id });
-            console.log(warnsGuild)
-            let wLen = warnsGuild.length;
-            
-        if (wLen <= 10) {
-            let text = " ";
-            for (let i = 0; i < wLen; i++) {
-              text += '<@' + warnsGuild[i].userId + '> for ' + warnsGuild[i].reason + '\n';
-            }
-        } else {
-            var pages = (wLen/10) 
-        }
-            const warnsEmbed = new EmbedBuilder()
-                .setColor(colour)
-                .setTitle('Warnings in this server:')
-                .setDescription(text)
-                .setTimestamp()    
-            await interaction.reply({ embeds: [warnsEmbed]});
-        } catch (error) {
-            await interaction.reply(error.message);
-            console.warn(`warns command failed.`)
-        }
-    }
+    } 
 		console.log('warns command - completed')
 	}
 },

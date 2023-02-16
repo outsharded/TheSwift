@@ -46,6 +46,16 @@ module.exports = {
             } else {
                 await interaction.reply({ content : 'Please confirm you want to remove every message', ephemeral: true });
             }
+            } else if (interaction.options.getSubcommand() === "clear_user") {
+                try {
+                    await Warn.deleteMany({ guidldId: interaction.guild.id, userId: interaction.options.getUser('user').id });
+                    await interaction.reply({ content: `All warns for ${interaction.options.getUser('user').username} have been removed.`, ephemeral: true});
+                } catch (error) {
+                    await interaction.reply(error.message);
+                    console.warn(error)
+                    console.warn(`removewarn command failed.`)
+                }  
+
             } else {
                 const id = interaction.options.getString("id")
                 try {
