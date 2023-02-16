@@ -23,14 +23,6 @@ module.exports = {
 				    .setRequired(true)))
         .addSubcommand(subcommand =>
             subcommand
-            .setName('image')
-            .setDescription('Use the OpenAI DALL-E to create images!')
-            .addStringOption(option => option
-                .setName('prompt')
-                .setDescription('Write a prompt to give to the AI. Make it short and descriptive.')
-                .setRequired(true)))
-        .addSubcommand(subcommand =>
-            subcommand
                 .setName('code')
                 .setDescription('Use the Codex engine to create code.')
                 .addStringOption(option => option
@@ -46,9 +38,9 @@ module.exports = {
     if (interaction.options.getSubcommand() === "text") {
 		try {
 			const completion = await openai.createCompletion({
-					"model": "text-babbage-001",
+					"model": "text-curie-001",
 					"prompt": prompt,
-					"temperature": .4,
+					"temperature": .8,
 					"max_tokens": 500,
 					"user": interaction.user.id
 			})
@@ -78,9 +70,9 @@ module.exports = {
             await interaction.reply({ embeds: [makingEmbed] });
                 try {
                     const completion = await openai.createCompletion({
-                        "model": "code-cushman-001",
+                        "model": "code-davinci-002",
                         "prompt": prompt,
-                        "temperature": .9,
+                        "temperature": .2,
                         "max_tokens": 200,
                         "user": interaction.user.id
                     })
@@ -98,38 +90,6 @@ module.exports = {
                     await interaction.editReply(error.message);
                     console.warn(`Code command failed.`)
                 }
-        } else if (interaction.options.getSubcommand() === "image") {
-            const makingEmbed = new EmbedBuilder()
-			.setColor(colour)
-				.setTitle('Generating Image')
-			.setDescription(prompt)
-			.setTimestamp()
-    		.setFooter({ text: `We use OpenAI's DALL-E to generate images!` });      
-//        const sent = 
-		await interaction.reply({ embeds: [makingEmbed] });
-		try {
-        	const response = await openai.createImage({
-            	    prompt: prompt,
-                	n: 1,
-                	size: "256x256",
-					user: interaction.user.id
-        	});
-		const madeEmbed = new EmbedBuilder()
-			.setColor(colour)
-			.setTitle('Generated Image')
-			.setDescription(prompt)
-			.setImage(response.data.data[0].url)
-			.setTimestamp()
-    		.setFooter({ text: `We use OpenAI's DALL-E to generate images!` });
-//Logging and reponse			
-        	console.log(response.data.data[0].url)
-        	interaction.editReply({ embeds: [madeEmbed], fetchReply: true  });
-			console.warn(`${interaction.user.id} ${interaction.user.username} Input:${prompt} Output: ${response.data.data[0].url}`)
-			console.log('Image command - completed')
-	} catch (error) {
-		await interaction.editReply(error.message);
-		console.warn(`Image command failed.`)
-	}
         } else {
             interaction.reply("Error. Did you specify text ,code or image?")
         }
