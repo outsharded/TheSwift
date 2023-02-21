@@ -67,7 +67,7 @@ module.exports = {
                 .setTimestamp()
                 .setFooter({ text: `We use OpenAI's Codex engine to generate code!` });      
     //        const sent = 
-            await interaction.reply({ embeds: [makingEmbed] });
+            interaction.reply({ embeds: [makingEmbed] });
                 try {
                     const completion = await openai.createCompletion({
                         "model": "code-davinci-002",
@@ -87,7 +87,7 @@ module.exports = {
                     console.warn(`${interaction.user.id} ${interaction.user.username} Input:${prompt} Output: ${completion.data.choices[0].text}`)
                     console.log('code command - completed')
                 } catch (error) {
-                    await interaction.editReply(error.message);
+                    interaction.editReply(error.message);
                     console.warn(`Code command failed.`)
                 }
         } else {
