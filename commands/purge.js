@@ -8,7 +8,8 @@ module.exports = {
 			option
 				.setName('messages')
 				.setDescription('how many messages to delete.')
-				.setRequired(true))
+				.setRequired(true)
+				.setMaxValue(100))
 		.setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages),
 	async execute(interaction) {
 		//define first response
@@ -19,7 +20,7 @@ module.exports = {
 				interaction.reply({ content: `Deleted ${numMessages} messages.`, ephemeral: true })
 			  }).catch(error => {
 				console.error(error);
-				interaction.reply('Error deleting messages.');
+				interaction.reply(`Error deleting messages. Message: ${error.message}`);
 			  });
 		} else {
 			interaction.reply(`You don't have permission to run this!`);

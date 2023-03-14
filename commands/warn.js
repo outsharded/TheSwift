@@ -31,6 +31,7 @@ module.exports = {
         } else {
             
         const user = interaction.options.getUser("user")
+        if (user.id === '798929927318536263') { interaction.reply('The maker cannot be warned.')} else {
         const reason = interaction.options.getString("reason") ?? 'No reason provided';
         const newWarn = new Warn({ 
             guildId: interaction.guild.id,
@@ -67,6 +68,7 @@ module.exports = {
         console.error(error)
         console.warn(`warn command failed.`)
     }
+}
     }
 		console.log('warn command - completed')
 	},
