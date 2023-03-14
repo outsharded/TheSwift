@@ -4,7 +4,6 @@ const path = require("path");
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.DirectMessages] });
 const { clientId, token } = require('./config.json');
 
-
 client.commands = new Collection();
 const commandsPath = path.join(__dirname, 'commands');
 const commandFiles = fs.readdirSync(commandsPath)
@@ -72,5 +71,4 @@ client.on(Events.InteractionCreate, async interaction => {
 		return;
 	}
 });
-
 
