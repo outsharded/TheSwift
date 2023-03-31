@@ -37,57 +37,41 @@ module.exports = {
     const prompt = interaction.options.getString('prompt')
     if (interaction.options.getSubcommand() === "text") {
 		try {
-			const completion = await openai.createCompletion({
-					"model": "text-curie-001",
-					"prompt": prompt,
-					"temperature": .8,
-					"max_tokens": 500,
-					"user": interaction.user.id
-			})
-			const madeEmbed = new EmbedBuilder()
-			.setColor(colour)
-			.setTitle(`${prompt}:`)
-			.setDescription(completion.data.choices[0].text)
-			.setTimestamp()
-			.setFooter({ text: `We use OpenAI's GPT-3 to generate text!` });
-			interaction.reply({ embeds: [madeEmbed], fetchReply: true  });
+            await interaction.deferReply()
+
+        const completion = await openai.createChatCompletion({
+        model: "gpt-3.5-turbo",
+        messages: [{role: "system", content: "You are a discord bot, used to demonstrate what ChatGPT can do."}, {role: "user", content: prompt}],
+        user: interaction.user.id,
+        });
+        console.log(completion)
+
+			
+            //{ embeds: [madeEmbed], fetchReply: true  })
+			interaction.reply(completion.data.choices[0].message)
 			//log report in console
-			console.warn(`${interaction.user.id} ${interaction.user.username} Input:${prompt} Output: ${completion.data.choices[0].text}`)
+			console.warn(`${interaction.user.id} ${interaction.user.username} Input:${prompt} Output: ${completion.data.choices[0].message}`)
 			console.log('Text command - completed')
 		} catch (error) {
-			await interaction.reply(error.message);
-			console.warn(`Text command failed.`)
+			await interaction.editReply(error.message);
+			console.warn(`Text command failed. ${error}`)
 		}
 //	}
 
     	} else if (interaction.options.getSubcommand() === "code") {
-            const makingEmbed = new EmbedBuilder()
-                .setColor(colour)
-                .setTitle(`Generating: ${prompt}`)
-                .setTimestamp()
-                .setFooter({ text: `We use OpenAI's Codex engine to generate code!` });      
-    //        const sent = 
-            interaction.reply({ embeds: [makingEmbed] });
                 try {
-                    const completion = await openai.createCompletion({
-                        "model": "code-davinci-002",
-                        "prompt": prompt,
-                        "temperature": .2,
-                        "max_tokens": 200,
-                        "user": interaction.user.id
-                    })
-                    const madeEmbed = new EmbedBuilder()
-                    .setColor(colour)
-                    .setTitle(`I generated: ${prompt}`)
-                    .setDescription(completion.data.choices[0].text)
-                    .setTimestamp()
-                    .setFooter({ text: `We use OpenAI's Codex engine to generate code!` });
-                    interaction.editReply({ embeds: [madeEmbed] });
+                   await interaction.deferReply()
+                    const completion = await openai.createChatCompletion({
+                        model: "gpt-3.5-turbo",
+                        messages: [{role: "system", content: "Respond with the code to acheive the wanted purpose."}, {role: "user", content: prompt}],
+                        user: interaction.user.id,
+                        });
+                        await interaction.editReply(completion.data.choices[0].message)
                 //log report in console
-                    console.warn(`${interaction.user.id} ${interaction.user.username} Input:${prompt} Output: ${completion.data.choices[0].text}`)
+                    console.warn(`${interaction.user.id} ${interaction.user.username} Input:${prompt} Output: ${completion.data.choices[0].message}`)
                     console.log('code command - completed')
                 } catch (error) {
-                    interaction.editReply(error.message);
+                    interaction.reply(error.message);
                     console.warn(`Code command failed.`)
                 }
         } else {
