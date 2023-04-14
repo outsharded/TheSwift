@@ -56,7 +56,11 @@ module.exports = {
 	async execute(interaction) {
 
     if (interaction.options.getSubcommand() === "cat") {
+      try {
         const catResult = await request('https://aws.random.cat/meow');
+        } catch (error) {
+  console.log(error)
+}
         const { file } = await catResult.body.json();
 
 const madeEmbed = new EmbedBuilder()
@@ -72,11 +76,12 @@ const madeEmbed = new EmbedBuilder()
 		const query = new URLSearchParams({ term });
 
 		const dictResult = await request(`https://api.urbandictionary.com/v0/define?${query}`);
+
 		const { list } = await dictResult.body.json();
         if (!list.length) {
             return interaction.reply(`No results found for **${term}**.`);
         } else {
-        interaction.reply(`**${term}**: ${list[0].definition}`);
+        interaction.reply(`**${term}**: ${list[0].definition.replace(/\[|\]/g, '')}`);
         }
     } else if (interaction.options.getSubcommand() === "dictionary") {
         const term = interaction.options.getString('word');
