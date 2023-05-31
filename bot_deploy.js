@@ -50,7 +50,7 @@ const rest = new REST({ version: '10' }).setToken(token);
 			.then(results => {
 			const servers = results.reduce((acc, guildCount) => acc + guildCount, 0)
 			console.log(servers)
-			//axios.post(`https://discords.com/bots/api/bot/${clientId}`, server_count = servers, ['Authorization'] = "507449adfc197d8a5074fc0405df0c68e14cec7692729d0bd7cc1bc38cbf3eb6491a5edfb3e35f4e3b812b3dafcad39a49240e1a7f95bb18cba18d22114f1960").catch(console.log(error))
+	
 
 			axios({
 				method: 'post', //you can set what request you want to be
