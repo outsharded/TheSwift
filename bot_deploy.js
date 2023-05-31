@@ -2,68 +2,43 @@ const { Client, GatewayIntentBits, Events, REST, Collection, Routes } = require 
 const fs = require ('node:fs');
 const path = require ("path");
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.DirectMessages] });
-const { clientId, token, discordsToken } = require ('./config.json');
+const { clientId, token, dblToken, topToken, shards } = require ('./config.json');
 const axios = require ('axios');
 
-client.commands = new Collection();
-const commandsPath = path.join(__dirname, 'commands');
-const commandFiles = fs.readdirSync(commandsPath)
 //.filter(file => file.endsWith('.js'));
-for (const file of commandFiles) {
-	const filePath = path.join(commandsPath, file);
-	const command = require(filePath);
-	client.commands.set(command.data.name, command);
-}
 
 
-client.login(token);
+client.once(Events.ClientReady, c => {
+	console.log("Bot is online")
+    c.user.setActivity('/help')
+	console.log("Shard's guilds " + c.guilds.cache.size)
 
-client.on(Events.ClientReady, () => {
-//start deploying commands	
-const commands = [];
-const commandFiles = fs.readdirSync('./commands')
-//.filter(file => file.endsWith('.js', or, '.ts'));
-for (const file of commandFiles) {
-	const command = require(`./commands/${file}`);
-	commands.push(command.data.toJSON());
-}
 
-const rest = new REST({ version: '10' }).setToken(token);
+});
 
-(async () => {
-	try {
-		console.log(`Started refreshing ${commands.length} application (/) commands.`);
-		const data = await rest.put(
-			Routes.applicationCommands(clientId),
-			{ body: commands },
-		);
+process.on("message", message => {
+    if (!message.type) return false;
 
-		console.log(`Successfully reloaded ${data.length} application (/) commands.`);
-	} catch (error) {
-		console.error(error);
-	}
-})();
+    if (message.type == "shardId") {
+		console.log("Shard number " + message.data.shardId + " recieved by child")
+		axios({
+			method: 'post', //you can set what request you want to be
+			url: `https://discordbotlist.com/api/v1/bots/${clientId}/stats`,
+			data: {guilds: client.guilds.cache.size, shard_id: message.data.shardId},
+			headers: {
+			  Authorization: dblToken
+			}
+		}).catch(e => console.log(e))
 
-    console.warn("Bot is online");
-    client.user.setActivity('/help')
-	return client.shard.fetchClientValues('guilds.cache.size')
-			.then(results => {
-			const servers = results.reduce((acc, guildCount) => acc + guildCount, 0)
-			console.log(servers)
-	
-
-			axios({
-				method: 'post', //you can set what request you want to be
-				url: `https://discords.com/bots/api/bot/${clientId}`,
-				data: {server_count: servers},
-				headers: {
-				  Authorization: discordsToken
-				}
-			}).catch(e => console.log(e))
-
-			return console.log(`Server count: ${results.reduce((acc, guildCount) => acc + guildCount, 0)}`);
-			})
-			.catch(console.error);
+		axios({
+			method: 'post', //you can set what request you want to be
+			url: `https://top.gg/api/bots/${clientId}/stats`,
+			data: {server_count: client.guilds.cache.size, shard_id: message.data.shardId, shard_count: shards},
+			headers: {
+			  Authorization: topToken
+			}
+		}).catch(e => console.log(e.response.data))
+    };
 });
 
 
@@ -86,3 +61,4 @@ client.on(Events.InteractionCreate, async interaction => {
 	}
 });
 
+client.login(token);
