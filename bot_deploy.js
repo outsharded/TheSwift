@@ -2,7 +2,7 @@ const { Client, GatewayIntentBits, Events, REST, Collection, Routes } = require 
 const fs = require ('node:fs');
 const path = require ("path");
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.DirectMessages] });
-const { clientId, token, discordsToken, dblToken, topToken } = require ('./config.json');
+const { clientId, token, dblToken, topToken, shards } = require ('./config.json');
 const axios = require ('axios');
 
 //.filter(file => file.endsWith('.js'));
@@ -33,7 +33,7 @@ process.on("message", message => {
 		axios({
 			method: 'post', //you can set what request you want to be
 			url: `https://top.gg/api/bots/${clientId}/stats`,
-			data: {server_count: client.guilds.cache.size, shard_id: message.data.shardId, shard_count: 2},
+			data: {server_count: client.guilds.cache.size, shard_id: message.data.shardId, shard_count: shards},
 			headers: {
 			  Authorization: topToken
 			}

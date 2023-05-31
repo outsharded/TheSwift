@@ -1,5 +1,5 @@
 const { ShardingManager } = require('discord.js');
-const { token } = require("./config.json");
+const { token, shards } = require("./config.json");
 
 const manager = new ShardingManager('./bot_deploy.js', { token: token });
 
@@ -9,4 +9,4 @@ manager.on('shardCreate', shard => shard.on("ready", () => {
     shard.send({type: "shardId", data: {shardId: shard.id}});
 }))
 
-manager.spawn({amount: 2, delay: 10000});
+manager.spawn({amount: shards, delay: 10000});
