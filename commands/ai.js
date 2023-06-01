@@ -48,9 +48,9 @@ module.exports = {
 
 			
             //{ embeds: [madeEmbed], fetchReply: true  })
-			interaction.reply(completion.data.choices[0].message)
+			interaction.editReply(completion.data.choices[0].message)
 			//log report in console
-			console.warn(`${interaction.user.id} ${interaction.user.username} Input:${prompt} Output: ${completion.data.choices[0].message}`)
+			console.warn(`${interaction.user.id} ${interaction.user.username} Input:${prompt} Output: ${completion.data.choices[0].message.content}`)
 			console.log('Text command - completed')
 		} catch (error) {
 			await interaction.editReply(error.message);
@@ -68,14 +68,15 @@ module.exports = {
                         });
                         await interaction.editReply(completion.data.choices[0].message)
                 //log report in console
-                    console.warn(`${interaction.user.id} ${interaction.user.username} Input:${prompt} Output: ${completion.data.choices[0].message}`)
+                    console.warn(`${interaction.user.id} ${interaction.user.username} Input:${prompt} Output: ${completion.data.choices[0].message.content}`)
+                    console.log(completion.data.choices[0].message)
                     console.log('code command - completed')
                 } catch (error) {
                     interaction.reply(error.message);
                     console.warn(`Code command failed.`)
                 }
         } else {
-            interaction.reply("Error. Did you specify text ,code or image?")
+            interaction.reply("Error. Did you specify text, code or image?")
         }
     	},
 };
