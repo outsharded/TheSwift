@@ -2,7 +2,8 @@ const { Client, GatewayIntentBits, Events, REST, Collection, Routes } = require 
 const fs = require ('node:fs');
 const path = require ("path");
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.DirectMessages] });
-const { clientId, token, dblToken, topToken, shards } = require ('./config.json');
+const { clientId, token, dblToken, topToken } = require ('./config.json');
+const { shards } = require ('./settings.json');
 const axios = require ('axios');
 
 //.filter(file => file.endsWith('.js'));
