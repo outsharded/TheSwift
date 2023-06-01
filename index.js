@@ -1,5 +1,6 @@
 const { ShardingManager } = require('discord.js');
-const { token, shards } = require("./config.json");
+const { token } = require("./config.json");
+const { shards } = require("./settings.json")
 
 const manager = new ShardingManager('./bot_deploy.js', { token: token });
 
