@@ -54,11 +54,6 @@ const row = new ActionRowBuilder()
 		.setLabel('>>')
 		.setStyle(ButtonStyle.Primary),
 )
-.addComponents(
-	new ButtonBuilder()
-		.setURL('https://tec-kids.co.uk/pages/commands.html')
-		.setLabel('Full command list')
-		.setStyle(ButtonStyle.Link));
 
 const inactiverow = new ActionRowBuilder()
 .addComponents(

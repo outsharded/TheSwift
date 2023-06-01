@@ -9,4 +9,4 @@ manager.on('shardCreate', shard => shard.on("ready", () => {
     shard.send({type: "shardId", data: {shardId: shard.id}});
 }))
 
-manager.spawn({amount: shards, delay: 10000});
+manager.spawn({amount: shards, delay: 5000});
