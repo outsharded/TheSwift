@@ -38,64 +38,64 @@ module.exports = {
                             { name: 'Server, Reason and Moderator (default)', value: 3 },
                         ))))
 .addSubcommandGroup(subcommand =>
-                                subcommand
-                                    .setName('roles')
-                                    .setDescription('Settings related to users being able to get roles.')
-                        .addSubcommand(subcommand =>
-                            subcommand
-                                .setName('user_role')
-                                .setDescription('A role that any user can get via /role')
-                                .addRoleOption(option =>
-                                    option
-                                        .setName('user_role')
-                                        .setDescription('A role that anyone can get.')
-                                        .setRequired(true)))
-                                        .addSubcommand(subcommand =>
-                                            subcommand
-                                                .setName('rmv_user_role')
-                                                .setDescription('Remove roles that any user can get via /role')
-                                                .addRoleOption(option =>
-                                                    option
-                                                        .setName('user_role')
-                                                        .setDescription('Role to remove.')
-                                                        .setRequired(true))))
+    subcommand
+        .setName('roles')
+        .setDescription('Settings related to users being able to get roles.')
+    .addSubcommand(subcommand =>
+        subcommand
+            .setName('user_role')
+            .setDescription('A role that any user can get via /role')
+            .addRoleOption(option =>
+                option
+                    .setName('user_role')
+                    .setDescription('A role that anyone can get.')
+                    .setRequired(true)))
+    .addSubcommand(subcommand =>
+        subcommand
+            .setName('rmv_user_role')
+            .setDescription('Remove roles that any user can get via /role')
+            .addRoleOption(option =>
+                option
+                    .setName('user_role')
+                    .setDescription('Role to remove.')
+                    .setRequired(true))))
 .addSubcommandGroup(subcommand =>
-                                                            subcommand
-                                                                .setName('links')
-                                                                .setDescription('Voting links for this server.')
-                                                    .addSubcommand(subcommand =>
-                                                        subcommand
-                                                            .setName('link')
-                                                            .setDescription('Add a voting link')
-                                                            .addStringOption(option =>
-                                                                option
-                                                                    .setName('link')
-                                                                    .setDescription('Use a fully formed URL e.g. (https://tec-kids.co.uk)')
-                                                                    .setRequired(true)))
-                                                                .addSubcommand(subcommand =>
-                                                                        subcommand
-                                                                            .setName('rmv_link')
-                                                                            .setDescription('Remove a voting link')
-                                                                            .addStringOption(option =>
-                                                                                option
-                                                                                    .setName('link')
-                                                                                    .setDescription('Use a fully formed URL e.g. (https://tec-kids.co.uk)')
-                                                                                    .setRequired(true))))
+    subcommand
+        .setName('links')
+        .setDescription('Voting links for this server.')
+    .addSubcommand(subcommand =>
+        subcommand
+            .setName('link')
+            .setDescription('Add a voting link')
+            .addStringOption(option =>
+                option
+                    .setName('link')
+                    .setDescription('Use a fully formed URL e.g. (https://tec-kids.co.uk)')
+                    .setRequired(true)))
+    .addSubcommand(subcommand =>
+        subcommand
+            .setName('rmv_link')
+            .setDescription('Remove a voting link')
+            .addStringOption(option =>
+                option
+                    .setName('link')
+                    .setDescription('Use a fully formed URL e.g. (https://tec-kids.co.uk)')
+                    .setRequired(true))))
 .addSubcommandGroup(subcommand =>
-                                                                                        subcommand
-                                                                                            .setName('report')
-                                                                                            .setDescription('Settings related to users being dmed after being warned.')
-                                                                                    .addSubcommand(subcommand =>
-                                                                                        subcommand
-                                                                                            .setName('report_channel')
-                                                                                            .setDescription('Channel to send reports to.')
-                                                                                            .addChannelOption(option =>
-                                                                                                option
-                                                                                                    .setName('channel')
-                                                                                                    .setDescription('Channel to send report to.')
-                                                                                                    .setRequired(true)
-                                                                                                    .addChannelTypes(ChannelType.GuildText)))
-                                                                                                    )
+    subcommand
+        .setName('report')
+        .setDescription('Settings related to users being dmed after being warned.')
+    .addSubcommand(subcommand =>
+        subcommand
+            .setName('report_channel')
+            .setDescription('Channel to send reports to.')
+            .addChannelOption(option =>
+                option
+                    .setName('channel')
+                    .setDescription('Channel to send report to.')
+                    .setRequired(true)
+                    .addChannelTypes(ChannelType.GuildText)))
+)
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
 	async execute(interaction) {
         if (!interaction.member.permissions.has(PermissionsBitField.Flags.ManageGuild)) {
