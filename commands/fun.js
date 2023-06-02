@@ -54,19 +54,14 @@ module.exports = {
                                 .setDescription("The place to get the weather for.")
                                 .setRequired(true))),
 	async execute(interaction) {
-
     if (interaction.options.getSubcommand() === "cat") {
-      try {
-        const catResult = await request('https://aws.random.cat/meow');
-        } catch (error) {
-  console.log(error)
-}
-        const { file } = await catResult.body.json();
+     const catResult = await request('https://api.thecatapi.com/v1/images/search').catch(e => console.log(error.message));
+      const link = await catResult.body.json()
 
 const madeEmbed = new EmbedBuilder()
     .setColor(colour)
     .setTitle('Random Cat')
-    .setImage(file)
+    .setImage(link[0].url)
     .setTimestamp()
 //Logging and reponse			
     interaction.reply({ embeds: [madeEmbed]});
