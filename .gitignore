@@ -3,3 +3,4 @@ node_modules
 archive
 config.txt
 lavalink
+.DS_Store
