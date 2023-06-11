@@ -6,7 +6,7 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 const { colour } = require("../settings.json");
-//const bannedIDs = []
+const bannedIDs = [771090740851638295]
 
 //was woman command. got dewomanised. bleeding heart liberals, ey?
 module.exports = {
@@ -30,10 +30,10 @@ module.exports = {
                     .setDescription('Write a prompt to give to the AI. Keep it short and desciptive.')
                     .setRequired(true))),
 	async execute(interaction) {
-//		if (bannedIDs.includes(interaction.user.id)) {
+		if (bannedIDs.includes(interaction.user.id)) {
 			// If user is in list, stop the
-//			await interaction.reply({ content: `You're banned from this command.`, ephemeral: true });
-//		} else {
+			await interaction.reply({ content: `You're banned from this command.`, ephemeral: true });
+		} else {
     const prompt = interaction.options.getString('prompt')
     if (interaction.options.getSubcommand() === "text") {
 		try {
@@ -56,7 +56,7 @@ module.exports = {
 			await interaction.editReply(error.message);
 			console.warn(`Text command failed. ${error}`)
 		}
-//	}
+
 
     	} else if (interaction.options.getSubcommand() === "code") {
                 try {
@@ -78,6 +78,7 @@ module.exports = {
         } else {
             interaction.reply("Error. Did you specify text, code or image?")
         }
+    }
     	},
 };
 
