@@ -15,7 +15,7 @@
     "express": "^4.18.2",
     "generate-password": "^1.7.0",
     "mongoose": "^7.1.0",
-    "openai": "^3.2.1",
+    "openai": "^4.0.1",
     "undici": "^5.22.0"
   }
 }
